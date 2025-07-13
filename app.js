@@ -19,6 +19,38 @@ Starting from the floor, we go upwards in the z, coronal plane is parallel with 
 
 */
 
+const bones = [
+    //new Bone("Femur", shape[1], {x: 1, y: 2, z: 1}, 45.72, 3, true),
+    //new Bone("Scapula", shape[0], {x: 1, y: 1, z: 1}, 15.00, 2, false),
+    //new Bone("Patella", shape[3], {x: 0, y: 0, z: 2}, 4.45, 2, true),
+
+    new Bone("Femur", "Long", {x: 0, y: 4, z: 0}, 45.72, 2, true),
+    new Bone("Patella", "Sesamoid", {x: 0, y: 3.5, z: 0}, 4.5, 0, true),
+    new Bone("Tibia", "Long", {x: 0.5, y: 2.5, z: 0}, 40.0, 2, true),
+    new Bone("Fibula", "Long", {x: -0.5, y: 2.5, z: 0}, 40.0, 2, true),
+    new Bone("Talus", "Short", {x: 0, y: 1, z: 0}, 5.0, 4, true),
+    new Bone("Calcaneus", "Irregular", {x: 0, y: 0.7, z: 0}, 5.5, 3, true),
+    new Bone("Navicular", "Short",{x: 0.2, y: 0.4, z: 0}, 4.0, 6, true),
+    new Bone("Cuboid", "Short",  {x: -0.2, y: 0.4, z: 0}, 4.0, 5, true),
+    new Bone("Medial Cuneiform", "Short", {x: 0.3, y: 0.1, z: 0}, 2.0, 4, true),
+    new Bone("Intermediate Cuneiform", "Short", {x: 0, y: 0.1, z: 0}, 2.0, 4, true),
+    new Bone("Lateral Cuneiform", "Short", {x: -0.3, y: 0.1, z: 0}, 2.0, 6, true),
+    new Bone("Metatarsals", "Long", {x: 0, y: -0.2, z: 0}, 5.0, 2, true),
+    new Bone("Foot Phalanges", "Long", {x: 0, y: -0.5, z: 0}, 2.5, 2, true),
+];
+
+// Random bone to guess
+let targetBone = bones[Math.floor(Math.random() * bones.length)];
+let guessCount = 0;
+
+// Input and button
+const input = document.getElementById("myInput");
+const button = document.querySelector("button.buttonf");
+button.addEventListener("click", handleGuess);
+
+// Storage
+let prevGuesses = [];
+
 function getRelativeDirection(guess, target) {
   const dx = target.position.x - guess.position.x;
   const dy = target.position.y - guess.position.y;
@@ -46,36 +78,6 @@ function getRelativeDirection(guess, target) {
   return direction;
 }
 
-const bones = [
-    //new Bone("Femur", shape[1], {x: 1, y: 2, z: 1}, 45.72, 3, true),
-    //new Bone("Scapula", shape[0], {x: 1, y: 1, z: 1}, 15.00, 2, false),
-    //new Bone("Patella", shape[3], {x: 0, y: 0, z: 2}, 4.45, 2, true),
-
-    new Bone("Femur", "Long", {x: 0, y: 4, z: 0}, 45.72, 2, true),
-    new Bone("Patella", "Sesamoid", {x: 0, y: 3.5, z: 0}, 4.5, 0, true),
-    new Bone("Tibia", "Long", {x: 0.5, y: 2.5, z: 0}, 40.0, 2, true),
-    new Bone("Fibula", "Long", {x: -0.5, y: 2.5, z: 0}, 40.0, 2, true),
-    new Bone("Talus", "Short", {x: 0, y: 1, z: 0}, 5.0, 4, true),
-    new Bone("Calcaneus", "Irregular", {x: -0.5, y: 1, z: -1}, 5.5, 3, true),
-    new Bone("Navicular", "Short", {x: 0.5, y: 1, z: 1}, 4.0, 6, true),
-    new Bone("Cuboid", "Short", {x: -0.5, y: 1, z: 1}, 4.0, 5, true),
-    new Bone("Medial Cuneiform", "Short", {x: 0.7, y: 0.8, z: 2}, 2.0, 4, true),
-    new Bone("Intermediate Cuneiform", "Short", {x: 0.5, y: 0.8, z: 2}, 2.0, 4, true),
-    new Bone("Lateral Cuneiform", "Short", {x: 0.3, y: 0.8, z: 2}, 2.0, 6, true),
-    new Bone("Metatarsals", "Long", {x: 0.3, y: 0.5, z: 3}, 5.0, 2, true),
-    new Bone("Foot Phalanges", "Long", {x: 0.5, y: 0.2, z: 4.5}, 2.5, 2, true),
-];
-
-// Random bone to guess
-let targetBone = bones[Math.floor(Math.random() * bones.length)];
-let guessCount = 0;
-
-// Input and button
-const input = document.getElementById("myInput");
-const button = document.querySelector("button.buttonf");
-
-button.addEventListener("click", handleGuess);
-
 window.onload = function() {
     const rows = document.getElementsByClassName("row");
     // Hide rows at index 0, 2, 4, 6, 8, 10
@@ -96,6 +98,8 @@ bones.forEach(bone => {
     boneSelector.appendChild(option);
 });
 
+// Enter key functionality
+// This allows the user to press Enter to submit their guess
 input.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         // If input is not an exact match, autocomplete with the first suggestion
@@ -104,6 +108,13 @@ input.addEventListener("keydown", function(event) {
             const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
             if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
             else handleGuess();
+        }
+    }
+    if (event.key === "Tab") {
+        const userInput = input.value.trim().toLowerCase();
+        if (userInput) {
+            const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
+            if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
         }
     }
 });
@@ -120,6 +131,16 @@ function handleGuess() {
         alert("Bone not found! Try another.");
         return;
     }
+
+    if (guessCount > 0 && prevGuesses.includes(guess.name)) {
+        alert("You already guessed that bone! Try another.");
+        return;
+    }
+
+    prevGuesses.push(guess.name);
+
+    // Clear input field
+    input.value = "";
 
     // Render to a new row (you can improve this with better indexing)
     const row = document.getElementsByClassName("row"); // Replace with dynamic logic
@@ -153,7 +174,7 @@ function handleGuess() {
     }
     else if (guess.length > targetBone.length) {
         cells[3].style.backgroundColor = downColor;
-                cells[3].textContent += " ⬇️";
+        cells[3].textContent += " ⬇️";
      }
     else cells[3].style.backgroundColor = sameColor;
 
@@ -164,7 +185,7 @@ function handleGuess() {
     }
     else if (guess.connects > targetBone.connects) {
         cells[4].style.backgroundColor = downColor;
-                cells[3].textContent += " ⬇️";
+        cells[4].textContent += " ⬇️";
      }
     else cells[4].style.backgroundColor = sameColor;
 
@@ -172,5 +193,9 @@ function handleGuess() {
     if (guess.name === targetBone.name) {
         answer.textContent = `Congratulations! You found the ${targetBone.name} in ${guessCount} guesses!`;
         button.disabled = true; // Disable button after correct guess
+    }
+    else if (guessCount >= 6) {
+        answer.textContent = `Game over! The correct bone was ${targetBone.name}.`;
+        button.disabled = true; // Disable button after max guesses
     }
 }
