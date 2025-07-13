@@ -1,3 +1,86 @@
-#header {
-    
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 2;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #1e1828;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heading {
+  outline: 0;
+  vertical-align: bottom;
+  background-color: transparent;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.frame {
+  background-color: #474153;
+  height: 32px;
+  width: 4vw;
+  outline: 1px solid #c9c7c7;
+  border-radius: 5px;
+  margin: 4px;
+  text-align: center;
+  position: relative;
+  transition: all 1s;
+}
+
+.bone {
+  width: 16vw;
+}
+
+.shape, .direction {
+  width: 7vw;
+}
+
+.num {
+  width: calc(38vw + 32px);
+  background-color: #332f3b;
+}
+
+.inputf, .buttonf {
+    outline: 1px solid #eaeaea;
+      background-color: #747376;
+      text-align: left;
+}
+
+.inputf {
+  width: calc(28vw + 24px);
+}
+
+.buttonf {
+  width: 10vw;
+}
+
+.answer {
+  width: 100%;
+  height: 10px;
+  font-size: 20px;
 }
