@@ -10,13 +10,14 @@ class Bone {
     }
 }
 
-const shape = ["Flat", "Long", "Short", "Sesamoid", "Irregular"];
-const directions = ["Lateral", "Medial", "Superior", "Inferior", "Anterior", "Posterior", "Distal", "Proximal"];
-
 /*
 -- directional coordinates --
 Starting from the floor, we go upwards in the z, coronal plane is parallel with x-axis, sagital plane is parallel with y-axis
+Directional Types:
+"Lateral", "Medial", "Superior", "Inferior", "Anterior", "Posterior", "Distal", "Proximal"
 
+Shape Types:
+"Flat", "Long", "Short", "Sesamoid", "Irregular"
 */
 
 const bones = [
@@ -24,19 +25,46 @@ const bones = [
     //new Bone("Scapula", shape[0], {x: 1, y: 1, z: 1}, 15.00, 2, false),
     //new Bone("Patella", shape[3], {x: 0, y: 0, z: 2}, 4.45, 2, true),
 
-    new Bone("Femur", "Long", {x: 0, y: 4, z: 0}, 45.72, 2, true),
-    new Bone("Patella", "Sesamoid", {x: 0, y: 3.5, z: 0}, 4.5, 0, true),
-    new Bone("Tibia", "Long", {x: 0.5, y: 2.5, z: 0}, 40.0, 2, true),
-    new Bone("Fibula", "Long", {x: -0.5, y: 2.5, z: 0}, 40.0, 2, true),
-    new Bone("Talus", "Short", {x: 0, y: 1, z: 0}, 5.0, 4, true),
-    new Bone("Calcaneus", "Irregular", {x: 0, y: 0.7, z: 0}, 5.5, 3, true),
-    new Bone("Navicular", "Short",{x: 0.2, y: 0.4, z: 0}, 4.0, 6, true),
-    new Bone("Cuboid", "Short",  {x: -0.2, y: 0.4, z: 0}, 4.0, 5, true),
-    new Bone("Medial Cuneiform", "Short", {x: 0.3, y: 0.1, z: 0}, 2.0, 4, true),
-    new Bone("Intermediate Cuneiform", "Short", {x: 0, y: 0.1, z: 0}, 2.0, 4, true),
-    new Bone("Lateral Cuneiform", "Short", {x: -0.3, y: 0.1, z: 0}, 2.0, 6, true),
-    new Bone("Metatarsals", "Long", {x: 0, y: -0.2, z: 0}, 5.0, 2, true),
-    new Bone("Foot Phalanges", "Long", {x: 0, y: -0.5, z: 0}, 2.5, 2, true),
+    // Sternum bones
+    new Bone("Manubrium", "Flat", { x: 0, y: 9.7, z: 0.8 }, 5.0, 2, false),
+    new Bone("Body of Sternum", "Flat", { x: 0, y: 9.3, z: 0.8 }, 12.0, 2, false),
+    new Bone("Xiphoid Process", "Flat", { x: 0, y: 8.9, z: 0.8 }, 2.5, 1, false),
+
+    // Clavicle & Scapula
+    new Bone("Clavicle", "Long", { x: 1.1, y: 9.2, z: -0.2 }, 14.0, 2, false),
+    new Bone("Scapula", "Flat", { x: 0.5, y: 9.4, z: -0.4 }, 15.0, 2, true),
+
+    // Ribs - grouped and checked
+    new Bone("True Ribs", "Flat", { x: 0.8, y: 9.3, z: 0.2 }, 26.6, 2, false),      // Ribs 1-7
+    new Bone("False Ribs", "Flat", { x: 0.9, y: 8.5, z: 0.2 }, 22.0, 3, false),     // Ribs 8-10
+    new Bone("Floating Ribs", "Flat", { x: 0.7, y: 7.9, z: 0.2 }, 18.2, 2, false),  // Ribs 11-12
+
+    // Spine Bones - grouped and checked
+    new Bone("Cervical Vertebrae", "Irregular", { x: 0, y: 10, z: 0 }, 2.5, 2, false),
+    new Bone("Thoracic Vertebrae", "Irregular", { x: 0, y: 8.5, z: 0 }, 3.0, 4, false),
+    new Bone("Lumbar Vertebrae", "Irregular", { x: 0, y: 6.2, z: 0 }, 3.5, 2, false),
+
+    // Hip bones -- checked
+    new Bone("Ilium", "Flat", { x: 0.5, y: 4.7, z: 0 }, 20.0, 3, false),
+    new Bone("Ischium", "Irregular", { x: 0.4, y: 4.4, z: -0.3 }, 10.0, 2, false),
+    new Bone("Pubis", "Irregular", { x: 0.4, y: 4.4, z: 0.3 }, 7.0, 3, false),
+    new Bone("Sacrum", "Irregular", { x: 0, y: 4.4, z: -0.7 }, 11.0, 4, false),
+    new Bone("Coccyx", "Irregular", { x: 0, y: 4.0, z: -0.7 }, 4.0, 1, false),
+
+    //legs and feet -- checked
+    new Bone("Femur", "Long", { x: 0, y: 4, z: 0 }, 45.72, 2, true),
+    new Bone("Patella", "Sesamoid", { x: 0, y: 3.5, z: 0 }, 4.5, 0, true),
+    new Bone("Tibia", "Long", { x: 0.5, y: 2.5, z: 0 }, 40.0, 2, true),
+    new Bone("Fibula", "Long", { x: -0.5, y: 2.5, z: 0 }, 40.0, 2, true),
+    new Bone("Talus", "Short", { x: 0, y: 1, z: 0 }, 5.0, 4, true),
+    new Bone("Calcaneus", "Irregular", { x: 0, y: 0.7, z: 0 }, 5.5, 3, true),
+    new Bone("Navicular", "Short", { x: 0.2, y: 0.4, z: 0 }, 4.0, 6, true),
+    new Bone("Cuboid", "Short", { x: -0.2, y: 0.4, z: 0 }, 4.0, 5, true),
+    new Bone("Medial Cuneiform", "Short", { x: 0.3, y: 0.1, z: 0 }, 2.0, 4, true),
+    new Bone("Intermediate Cuneiform", "Short", { x: 0, y: 0.1, z: 0 }, 2.0, 4, true),
+    new Bone("Lateral Cuneiform", "Short", { x: -0.3, y: 0.1, z: 0 }, 2.0, 6, true),
+    new Bone("Metatarsals", "Long", { x: 0, y: -0.2, z: 0 }, 5.0, 2, true),
+    new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, true),
 ];
 
 // Random bone to guess
@@ -52,33 +80,33 @@ button.addEventListener("click", handleGuess);
 let prevGuesses = [];
 
 function getRelativeDirection(guess, target) {
-  const dx = target.position.x - guess.position.x;
-  const dy = target.position.y - guess.position.y;
-  const dz = target.position.z - guess.position.z;
+    const dx = target.position.x - guess.position.x;
+    const dy = target.position.y - guess.position.y;
+    const dz = target.position.z - guess.position.z;
 
-  let direction = "";
+    let direction = "";
 
-  // Compare absolute values to find strongest axis of difference
-  const absDx = Math.abs(dx);
-  const absDy = Math.abs(dy);
-  const absDz = Math.abs(dz);
+    // Compare absolute values to find strongest axis of difference
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    const absDz = Math.abs(dz);
 
-  if (absDx > absDy && absDx > absDz) {
-    direction = dx > 0 ? "Medial" : dx < 0 ? "Lateral" : "Same";
-  } else if (absDy >= absDx && absDy >= absDz) {
-    if (guess.appendicular) {
-      direction = dy > 0 ? "Proximal" : dy < 0 ? "Distal" : "Same";
+    if (absDx > absDy && absDx > absDz) {
+        direction = dx > 0 ? "Medial" : dx < 0 ? "Lateral" : "Same";
+    } else if (absDy >= absDx && absDy >= absDz) {
+        if (guess.appendicular) {
+            direction = dy > 0 ? "Proximal" : dy < 0 ? "Distal" : "Same";
+        } else {
+            direction = dy > 0 ? "Superior" : dy < 0 ? "Inferior" : "Same";
+        }
     } else {
-      direction = dy > 0 ? "Inferior" : dy < 0 ? "Superior" : "Same";
+        direction = dz > 0 ? "Posterior" : dz < 0 ? "Anterior" : "Same";
     }
-  } else {
-    direction = dz > 0 ? "Posterior" : dz < 0 ? "Anterior" : "Same";
-  }
 
-  return direction;
+    return direction;
 }
 
-window.onload = function() {
+window.onload = function () {
     const rows = document.getElementsByClassName("row");
     // Hide rows at index 0, 2, 4, 6, 8, 10
     [0, 2, 4, 6, 8, 10].forEach(i => {
@@ -100,7 +128,7 @@ bones.forEach(bone => {
 
 // Enter key functionality
 // This allows the user to press Enter to submit their guess
-input.addEventListener("keydown", function(event) {
+input.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         // If input is not an exact match, autocomplete with the first suggestion
         const userInput = input.value.trim().toLowerCase();
@@ -148,46 +176,68 @@ function handleGuess() {
     row[guessCount * 2 + 1].style.display = "none";
     row[guessCount++ * 2].style.display = "flex";
 
-    cells[0].textContent = guess.name;
-    cells[1].textContent = guess.shape;
-    cells[2].textContent = getRelativeDirection(guess, targetBone);
-    cells[3].textContent = guess.length;
-    cells[4].textContent = guess.connects;
+const cellContents = [
+    guess.name,
+    guess.shape,
+    getRelativeDirection(guess, targetBone),
+    guess.length,
+    guess.connects
+];
+
+cells.forEach((cell, i) => {
+    // Clear content before reveal
+    cell.textContent = "";
+    setTimeout(() => {
+        cell.textContent = cellContents[i];
+        cell.classList.add("revealed");
+        setTimeout(() => cell.classList.remove("revealed"), 400);
+    }, i * 180); // 180ms delay between each cell
+});
 
     const upColor = "#B042FF"
     const downColor = "#E78F3A";
     const wrongColor = "#c14b2eff";
     const sameColor = "#56c079ff";
 
-    //background logic for shape
-    if (guess.shape !== targetBone.shape) cells[1].style.backgroundColor = wrongColor;
-    else cells[1].style.backgroundColor = sameColor;
+cells.forEach((cell, i) => {
+    cell.textContent = "";
+    setTimeout(() => {
+        cell.textContent = cellContents[i];
+        cell.classList.add("revealed");
 
-    //background logic for direction
-    if (getRelativeDirection(guess, targetBone) !== "Same") cells[2].style.backgroundColor = upColor;
-    else cells[2].style.backgroundColor = sameColor;
+        // Animate background color in sync with reveal
+        if (i === 1) { // shape
+            cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
+        }
+        if (i === 2) { // direction
+            cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
+        }
+        if (i === 3) { // length
+            if (guess.length < targetBone.length) {
+                cell.style.backgroundColor = upColor;
+                cell.textContent += " ⬆️";
+            } else if (guess.length > targetBone.length) {
+                cell.style.backgroundColor = downColor;
+                cell.textContent += " ⬇️";
+            } else {
+                cell.style.backgroundColor = sameColor;
+            }
+        }
+        if (i === 4) { // connects
+            if (guess.connects < targetBone.connects) {
+                cell.style.backgroundColor = upColor;
+                cell.textContent += " ⬆️";
+            } else if (guess.connects > targetBone.connects) {
+                cell.style.backgroundColor = downColor;
+                cell.textContent += " ⬇️";
+            } else {
+                cell.style.backgroundColor = sameColor;
+            }
+        }
 
-    //background logic for length
-    if (guess.length < targetBone.length) {
-        cells[3].style.backgroundColor = upColor;
-        cells[3].textContent += " ⬆️";
-    }
-    else if (guess.length > targetBone.length) {
-        cells[3].style.backgroundColor = downColor;
-        cells[3].textContent += " ⬇️";
-     }
-    else cells[3].style.backgroundColor = sameColor;
-
-    //backround logic for other bones touching
-    if (guess.connects < targetBone.connects) {
-        cells[4].style.backgroundColor = upColor;
-        cells[4].textContent += " ⬆️";
-    }
-    else if (guess.connects > targetBone.connects) {
-        cells[4].style.backgroundColor = downColor;
-        cells[4].textContent += " ⬇️";
-     }
-    else cells[4].style.backgroundColor = sameColor;
+        setTimeout(() => cell.classList.remove("revealed"), 400);
+    }, i * 180);
+});
 
     //win condition
     if (guess.name === targetBone.name) {

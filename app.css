@@ -79,6 +79,12 @@
 
 .buttonf {
   width: 10vw;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.buttonf:hover {
+  transform: scale(1.08);
+  background-color: #b042ff;
 }
 
 .answer {
@@ -96,4 +102,23 @@
 
 .inputf:focus {
     background-color: #8e8e90;
+}
+
+@keyframes revealCell {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.frame.revealed {
+  animation: revealCell 0.35s cubic-bezier(0.4, 0.8, 0.4, 1);
 }
