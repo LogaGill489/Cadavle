@@ -1,7 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 2;
-  font-weight: 400;
+  font-weight: 700;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255);
@@ -32,7 +31,7 @@
     justify-content: center;
     grid-column: 2;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.2vw;
 }
 
 .row {
@@ -41,6 +40,10 @@
 }
 
 .frame {
+  display: flex; /* enables flexbox */
+  align-items: center; /* vertical centering */
+  justify-content: center; /* horizontal centering */
+
   background-color: #474153;
   height: 32px;
   width: 4vw;
@@ -75,7 +78,7 @@
 
 .inputf, .buttonf {
     font-family: inherit; /* or specify your desired font */
-    font-size: 1rem;      /* or match your .frame font size */
+    font-size: 1.2vw;      /* or match your .frame font size */
     outline: 1px solid #ffffff;
     background-color: #747376;
     text-align: left;
@@ -100,10 +103,16 @@
     background-color: #645955;
 }
 
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px; /* optional: adds space between input and button */
+}
+
 .inputf {
     width: calc(28vw + 24px);
     border-radius: 6px;
-    font-size: 1rem;
     transition: background-color 0.2s;
 }
 
@@ -114,7 +123,7 @@
 .titles {
   outline:0px;
   background-color: transparent;
-  font-size: 0.8rem;
+  font-size: 0.94vw;
   height: 20px;
 }
 
@@ -129,7 +138,7 @@
 }
 
 .wikipedia {
-  width: 42px;
+  width: 42px !important;
   height: 42px;
 }
 
@@ -145,6 +154,65 @@
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media (max-width: 800px) {
+  .board, .inputf, .buttonf {
+    font-size: 2.4vw;
+  }
+
+  .titles {
+    font-size: 1.85vw;
+  }
+
+  .frame {
+    width: 8vw;
+  }
+  .bone {
+    width: 29vw;
+  }
+  
+  .length {
+    width: 11vw;
+  }
+  
+  .shape, .direction {
+    width: 14vw;
+  }
+
+  .num {
+    width: calc(76vw + 32px);
+  }
+
+  .inputf {
+    width: calc(56vw + 24px);
+  }
+
+  .buttonf {
+    width: 20vw;
+  }
+
+  .winframe {
+    width: 48vw;
+  }
+}
+
+@media (max-width: 500px) { 
+  .board, .inputf, .buttonf {
+    font-size: 2.8vw;
+  }
+
+  .titles {
+    font-size: 2.8vw;
+  }
+
+  .art_title {
+    right: 0px;
+  }
+
+  .len_title {
+    right: 4px;
   }
 }
 
