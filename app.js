@@ -1,12 +1,12 @@
 /* -- bone class -- */
 class Bone {
-    constructor(name, shape, position, length, connects, appendicular) {
+    constructor(name, shape, position, length, connects, grouping) {
         this.name = name;
         this.shape = shape;
         this.position = position;
         this.length = length;
         this.connects = connects;
-        this.appendicular = appendicular;
+        this.grouping = grouping;
     }
 }
 
@@ -21,50 +21,65 @@ Shape Types:
 */
 
 const bones = [
-    //new Bone("Femur", shape[1], {x: 1, y: 2, z: 1}, 45.72, 3, true),
-    //new Bone("Scapula", shape[0], {x: 1, y: 1, z: 1}, 15.00, 2, false),
-    //new Bone("Patella", shape[3], {x: 0, y: 0, z: 2}, 4.45, 2, true),
+    // Carpals - grouped
+    new Bone("Scaphoid", "Short", { x: 1.6, y: 5.5, z: 0 }, 2.5, 5, 1),
+    new Bone("Lunate", "Short", { x: 1.8, y: 5.4, z: 0 }, 2.0, 5, 1),
+    new Bone("Triquetral", "Short", { x: 2.0, y: 5.3, z: 0 }, 2.0, 3, 1),
+    new Bone("Pisiform", "Short", { x: 2.2, y: 5.2, z: 0 }, 1.5, 1, 1),
+    new Bone("Trapezium", "Short", { x: 1.4, y: 5.3, z: 0 }, 2.0, 4, 1),
+    new Bone("Trapezoid", "Short", { x: 1.5, y: 5.2, z: 0 }, 2.0, 4, 1),
+    new Bone("Capitate", "Short", { x: 1.7, y: 5.1, z: 0 }, 2.5, 7, 1),
+    new Bone("Hamate", "Short", { x: 1.9, y: 5.0, z: 0 }, 2.0, 5, 1),
 
-    // Sternum bones
-    new Bone("Manubrium", "Flat", { x: 0, y: 9.7, z: 0.8 }, 5.0, 2, false),
-    new Bone("Body of Sternum", "Flat", { x: 0, y: 9.3, z: 0.8 }, 12.0, 2, false),
-    new Bone("Xiphoid Process", "Flat", { x: 0, y: 8.9, z: 0.8 }, 2.5, 1, false),
+    // Metacarpals + Phalanges - grouped
+    new Bone("Metacarpals", "Long", { x: 1.7, y: 4.7, z: 0 }, 5.0, 2, 1),
+    new Bone("Hand Phalanges", "Long", { x: 1.7, y: 4.2, z: 0 }, 2.5, 2, 1),
 
-    // Clavicle & Scapula
-    new Bone("Clavicle", "Long", { x: 1.1, y: 9.2, z: -0.2 }, 14.0, 2, false),
-    new Bone("Scapula", "Flat", { x: 0.5, y: 9.4, z: -0.4 }, 15.0, 2, true),
+    // Upper limbs - checked
+    new Bone("Humerus", "Long", { x: 1.4, y: 8.2, z: 0 }, 35.0, 3, 1),
+    new Bone("Ulna", "Long", { x: 2.4, y: 6.0, z: 0 }, 26.0, 2, 1),
+    new Bone("Radius", "Long", { x: 1.8, y: 6.0, z: 0 }, 24.0, 4, 1),
+
+    // Sternum bones - checked
+    new Bone("Manubrium", "Flat", { x: 0, y: 9.7, z: 0.8 }, 5.0, 2, 2),
+    new Bone("Body of Sternum", "Flat", { x: 0, y: 9.3, z: 0.8 }, 12.0, 2, 2),
+    new Bone("Xiphoid Process", "Flat", { x: 0, y: 8.9, z: 0.8 }, 2.5, 1, 2),
+
+    // Clavicle & Scapula - checked
+    new Bone("Clavicle", "Long", { x: 1.1, y: 9.2, z: -0.2 }, 14.0, 2, 2),
+    new Bone("Scapula", "Flat", { x: 0.5, y: 9.4, z: -0.4 }, 15.0, 2, 2),
 
     // Ribs - grouped and checked
-    new Bone("True Ribs", "Flat", { x: 0.8, y: 9.3, z: 0.2 }, 26.6, 2, false),      // Ribs 1-7
-    new Bone("False Ribs", "Flat", { x: 0.9, y: 8.5, z: 0.2 }, 22.0, 3, false),     // Ribs 8-10
-    new Bone("Floating Ribs", "Flat", { x: 0.7, y: 7.9, z: 0.2 }, 18.2, 2, false),  // Ribs 11-12
+    new Bone("True Ribs", "Flat", { x: 0.8, y: 9.3, z: 0.2 }, 26.6, 2, 2),      // Ribs 1-7
+    new Bone("False Ribs", "Flat", { x: 0.9, y: 8.5, z: 0.2 }, 22.0, 3, 2),     // Ribs 8-10
+    new Bone("Floating Ribs", "Flat", { x: 0.7, y: 7.9, z: 0.2 }, 18.2, 2, 2),  // Ribs 11-12
 
     // Spine Bones - grouped and checked
-    new Bone("Cervical Vertebrae", "Irregular", { x: 0, y: 10, z: 0 }, 2.5, 2, false),
-    new Bone("Thoracic Vertebrae", "Irregular", { x: 0, y: 8.5, z: 0 }, 3.0, 4, false),
-    new Bone("Lumbar Vertebrae", "Irregular", { x: 0, y: 6.2, z: 0 }, 3.5, 2, false),
+    new Bone("Cervical Vertebrae", "Irregular", { x: 0, y: 10, z: 0 }, 2.5, 2, 2),
+    new Bone("Thoracic Vertebrae", "Irregular", { x: 0, y: 8.5, z: 0 }, 3.0, 4, 2),
+    new Bone("Lumbar Vertebrae", "Irregular", { x: 0, y: 6.2, z: 0 }, 3.5, 2, 2),
 
     // Hip bones -- checked
-    new Bone("Ilium", "Flat", { x: 0.5, y: 4.7, z: 0 }, 20.0, 3, false),
-    new Bone("Ischium", "Irregular", { x: 0.4, y: 4.4, z: -0.3 }, 10.0, 2, false),
-    new Bone("Pubis", "Irregular", { x: 0.4, y: 4.4, z: 0.3 }, 7.0, 3, false),
-    new Bone("Sacrum", "Irregular", { x: 0, y: 4.4, z: -0.7 }, 11.0, 4, false),
-    new Bone("Coccyx", "Irregular", { x: 0, y: 4.0, z: -0.7 }, 4.0, 1, false),
+    new Bone("Ilium", "Flat", { x: 0.5, y: 4.7, z: 0 }, 20.0, 3, 2),
+    new Bone("Ischium", "Irregular", { x: 0.4, y: 4.4, z: -0.3 }, 10.0, 2, 2),
+    new Bone("Pubis", "Irregular", { x: 0.4, y: 4.4, z: 0.3 }, 7.0, 3, 2),
+    new Bone("Sacrum", "Irregular", { x: 0, y: 4.4, z: -0.7 }, 11.0, 4, 2),
+    new Bone("Coccyx", "Irregular", { x: 0, y: 4.0, z: -0.7 }, 4.0, 1, 2),
 
     //legs and feet -- checked
-    new Bone("Femur", "Long", { x: 0, y: 4, z: 0 }, 45.72, 2, true),
-    new Bone("Patella", "Sesamoid", { x: 0, y: 3.5, z: 0 }, 4.5, 0, true),
-    new Bone("Tibia", "Long", { x: 0.5, y: 2.5, z: 0 }, 40.0, 2, true),
-    new Bone("Fibula", "Long", { x: -0.5, y: 2.5, z: 0 }, 40.0, 2, true),
-    new Bone("Talus", "Short", { x: 0, y: 1, z: 0 }, 5.0, 4, true),
-    new Bone("Calcaneus", "Irregular", { x: 0, y: 0.7, z: 0 }, 5.5, 3, true),
-    new Bone("Navicular", "Short", { x: 0.2, y: 0.4, z: 0 }, 4.0, 6, true),
-    new Bone("Cuboid", "Short", { x: -0.2, y: 0.4, z: 0 }, 4.0, 5, true),
-    new Bone("Medial Cuneiform", "Short", { x: 0.3, y: 0.1, z: 0 }, 2.0, 4, true),
-    new Bone("Intermediate Cuneiform", "Short", { x: 0, y: 0.1, z: 0 }, 2.0, 4, true),
-    new Bone("Lateral Cuneiform", "Short", { x: -0.3, y: 0.1, z: 0 }, 2.0, 6, true),
-    new Bone("Metatarsals", "Long", { x: 0, y: -0.2, z: 0 }, 5.0, 2, true),
-    new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, true),
+    new Bone("Femur", "Long", { x: 0, y: 4, z: 0 }, 45.72, 2, 0),
+    new Bone("Patella", "Sesamoid", { x: 0, y: 3.5, z: 0 }, 4.5, 0, 0),
+    new Bone("Tibia", "Long", { x: -0.5, y: 2.5, z: 0 }, 40.0, 2, 0),
+    new Bone("Fibula", "Long", { x: 0.5, y: 2.5, z: 0 }, 40.0, 2, 0),
+    new Bone("Talus", "Short", { x: 0, y: 1, z: 0 }, 5.0, 4, 0),
+    new Bone("Calcaneus", "Irregular", { x: 0, y: 0.7, z: 0 }, 5.5, 3, 0),
+    new Bone("Navicular", "Short", { x: 0.2, y: 0.4, z: 0 }, 4.0, 6, 0),
+    new Bone("Cuboid", "Short", { x: -0.2, y: 0.4, z: 0 }, 4.0, 5, 0),
+    new Bone("Medial Cuneiform", "Short", { x: -0.3, y: 0.1, z: 0 }, 2.0, 4, 0),
+    new Bone("Intermediate Cuneiform", "Short", { x: 0, y: 0.1, z: 0 }, 2.0, 4, 0),
+    new Bone("Lateral Cuneiform", "Short", { x: 0.3, y: 0.1, z: 0 }, 2.0, 6, 0),
+    new Bone("Metatarsals", "Long", { x: 0, y: -0.2, z: 0 }, 5.0, 2, 0),
+    new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, 0),
 ];
 
 // Random bone to guess
@@ -92,15 +107,15 @@ function getRelativeDirection(guess, target) {
     const absDz = Math.abs(dz);
 
     if (absDx > absDy && absDx > absDz) {
-        direction = dx > 0 ? "Medial" : dx < 0 ? "Lateral" : "Same";
+        direction = dx > 0 ? "Lateral" : dx < 0 ? "Medial" : "Same";
     } else if (absDy >= absDx && absDy >= absDz) {
-        if (guess.appendicular) {
+        if (guess.grouping === target.grouping && guess.grouping !== 2) {
             direction = dy > 0 ? "Proximal" : dy < 0 ? "Distal" : "Same";
         } else {
             direction = dy > 0 ? "Superior" : dy < 0 ? "Inferior" : "Same";
         }
     } else {
-        direction = dz > 0 ? "Posterior" : dz < 0 ? "Anterior" : "Same";
+        direction = dz > 0 ? "Anterior" : dz < 0 ? "Posterior" : "Same";
     }
 
     return direction;

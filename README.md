@@ -26,7 +26,12 @@
 <p>
 Cadavle was made originally for friends to test their anatomy knowledge of bones in a fun way; inspired by something we all play as a somewhat daily tradition: Wordle.
 
-The general premise of the game is simple, the player takes turns ... (finish later)
+The general premise of the game is simple, the player has 6 attempts to guess the correct bone
+(or bone group in some cases), and is given hints from their guess based on if it is the same type,
+the direction, the length, and the number of bones that guess touches. After each guess,
+colours indicate weather the guess is incorrect,
+(red), correct (green), too high (orange), or too
+low (blue), which will help the player with future guessing. Below you can see what a full game might look like. I truly hope you enjoy it! It was made for my girlfriend, though I know many anatomy lovers will have some fun too!
 </p>
 
 
