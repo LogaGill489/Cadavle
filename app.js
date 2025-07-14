@@ -21,24 +21,48 @@ Shape Types:
 */
 
 const bones = [
-    // Carpals - grouped
-    new Bone("Scaphoid", "Short", { x: 1.6, y: 5.5, z: 0 }, 2.5, 5, 1),
-    new Bone("Lunate", "Short", { x: 1.8, y: 5.4, z: 0 }, 2.0, 5, 1),
-    new Bone("Triquetral", "Short", { x: 2.0, y: 5.3, z: 0 }, 2.0, 3, 1),
-    new Bone("Pisiform", "Short", { x: 2.2, y: 5.2, z: 0 }, 1.5, 1, 1),
-    new Bone("Trapezium", "Short", { x: 1.4, y: 5.3, z: 0 }, 2.0, 4, 1),
-    new Bone("Trapezoid", "Short", { x: 1.5, y: 5.2, z: 0 }, 2.0, 4, 1),
-    new Bone("Capitate", "Short", { x: 1.7, y: 5.1, z: 0 }, 2.5, 7, 1),
-    new Bone("Hamate", "Short", { x: 1.9, y: 5.0, z: 0 }, 2.0, 5, 1),
+    // Cranial bones
+    new Bone("Occipital", "Flat", { x: 0, y: 11.1, z: -0.7 }, 5.5, 6, 3),
+    new Bone("Parietal", "Flat", { x: 0.3, y: 11.5, z: -0.5 }, 6.0, 5, 3),
+    new Bone("Frontal", "Flat", { x: 0, y: 11.6, z: 0.2 }, 5.0, 12, 3),
+    new Bone("Temporal", "Irregular", { x: 0.7, y: 10.9, z: -0.4 }, 4.5, 5, 3),
+    new Bone("Sphenoid", "Irregular", { x: 0, y: 10.8, z: -0.2 }, 4.0, 12, 3),
+    new Bone("Ethmoid", "Irregular", { x: 0, y: 11, z: 0.2 }, 2.5, 13, 3),
 
-    // Metacarpals + Phalanges - grouped
+    // Facial bones
+    new Bone("Nasal", "Flat", { x: 0, y: 11.1, z: 0.5 }, 2.0, 4, 2),
+    new Bone("Maxilla", "Irregular", { x: 0, y: 10.7, z: 0.7 }, 6.0, 9, 2),
+    new Bone("Lacrimal", "Flat", { x: 0.2, y: 11, z: 0.5 }, 1.0, 4, 2),
+    new Bone("Zygomatic", "Irregular", { x: 0.7, y: 10.9, z: 0.4 }, 3.0, 4, 2),
+    new Bone("Palatine", "Irregular", { x: 0.1, y: 10.6, z: 0.2 }, 2.0, 6, 2),
+    new Bone("Inferior Nasal Concha", "Irregular", { x: 0.1, y: 10.6, z: 0.5 }, 1.5, 3, 2),
+    new Bone("Vomer", "Flat", { x: 0, y: 10.5, z: 0.3 }, 1.5, 6, 2),
+    new Bone("Hyoid", "Irregular", { x: 0, y: 9.8, z: 0.4 }, 1.2, 0, 2),
+    new Bone("Mandible", "Irregular", { x: 0, y: 10.2, z: 0.7 }, 8.0, 2, 2),
+
+    // Ear bones
+    new Bone("Malleus", "Irregular", { x: 0.9, y: 10.9, z: -0.4 }, 0.85, 3, 2),
+    new Bone("Incus", "Irregular", { x: 0.89, y: 10.9, z: -0.4 }, 0.7, 2, 2),
+    new Bone("Stapes", "Irregular", { x: 0.88, y: 10.9, z: -0.4 }, 0.3, 2, 2),
+
+    // Carpals - grouped checked
+    new Bone("Scaphoid", "Short", { x: 2.0, y: 5.4, z: 0 }, 2.8, 5, 1),
+    new Bone("Lunate", "Short", { x: 1.7, y: 5.4, z: 0 }, 2.0, 5, 1),
+    new Bone("Triquetral", "Short", { x: 1.6, y: 5.3, z: 0 }, 2.0, 3, 1),
+    new Bone("Pisiform", "Short", { x: 1.6, y: 5.3, z: 0.2 }, 1.5, 1, 1),
+    new Bone("Trapezium", "Short", { x: 2.1, y: 5.1, z: 0 }, 1.8, 4, 1),
+    new Bone("Trapezoid", "Short", { x: 1.9, y: 5.1, z: 0 }, 1.7, 4, 1),
+    new Bone("Capitate", "Short", { x: 1.7, y: 5.0, z: 0 }, 2.9, 7, 1),
+    new Bone("Hamate", "Short", { x: 1.5, y: 5.0, z: 0 }, 2.3, 5, 1),
+
+    // Metacarpals + Phalanges - grouped checked
     new Bone("Metacarpals", "Long", { x: 1.7, y: 4.7, z: 0 }, 5.0, 2, 1),
     new Bone("Hand Phalanges", "Long", { x: 1.7, y: 4.2, z: 0 }, 2.5, 2, 1),
 
     // Upper limbs - checked
-    new Bone("Humerus", "Long", { x: 1.4, y: 8.2, z: 0 }, 35.0, 3, 1),
-    new Bone("Ulna", "Long", { x: 2.4, y: 6.0, z: 0 }, 26.0, 2, 1),
-    new Bone("Radius", "Long", { x: 1.8, y: 6.0, z: 0 }, 24.0, 4, 1),
+    new Bone("Humerus", "Long", { x: 1.5, y: 8.2, z: 0 }, 35.0, 3, 1),
+    new Bone("Ulna", "Long", { x: 1.8, y: 6.0, z: 0 }, 26.0, 2, 1),
+    new Bone("Radius", "Long", { x: 2.0, y: 6.0, z: 0 }, 24.0, 4, 1),
 
     // Sternum bones - checked
     new Bone("Manubrium", "Flat", { x: 0, y: 9.7, z: 0.8 }, 5.0, 2, 2),
@@ -52,7 +76,7 @@ const bones = [
     // Ribs - grouped and checked
     new Bone("True Ribs", "Flat", { x: 0.8, y: 9.3, z: 0.2 }, 26.6, 2, 2),      // Ribs 1-7
     new Bone("False Ribs", "Flat", { x: 0.9, y: 8.5, z: 0.2 }, 22.0, 3, 2),     // Ribs 8-10
-    new Bone("Floating Ribs", "Flat", { x: 0.7, y: 7.9, z: 0.2 }, 18.2, 2, 2),  // Ribs 11-12
+    new Bone("Floating Ribs", "Flat", { x: 0.7, y: 7.9, z: 0.2 }, 18.2, 1, 2),  // Ribs 11-12
 
     // Spine Bones - grouped and checked
     new Bone("Cervical Vertebrae", "Irregular", { x: 0, y: 10, z: 0 }, 2.5, 2, 2),
@@ -74,10 +98,10 @@ const bones = [
     new Bone("Talus", "Short", { x: 0, y: 1, z: 0 }, 5.0, 4, 0),
     new Bone("Calcaneus", "Irregular", { x: 0, y: 0.7, z: 0 }, 5.5, 3, 0),
     new Bone("Navicular", "Short", { x: 0.2, y: 0.4, z: 0 }, 4.0, 6, 0),
-    new Bone("Cuboid", "Short", { x: -0.2, y: 0.4, z: 0 }, 4.0, 5, 0),
-    new Bone("Medial Cuneiform", "Short", { x: -0.3, y: 0.1, z: 0 }, 2.0, 4, 0),
+    new Bone("Cuboid", "Short", { x: 0.4, y: 0.2, z: 0 }, 4.0, 5, 0),
+    new Bone("Medial Cuneiform", "Short", { x: -0.2, y: 0.1, z: 0 }, 2.0, 4, 0),
     new Bone("Intermediate Cuneiform", "Short", { x: 0, y: 0.1, z: 0 }, 2.0, 4, 0),
-    new Bone("Lateral Cuneiform", "Short", { x: 0.3, y: 0.1, z: 0 }, 2.0, 6, 0),
+    new Bone("Lateral Cuneiform", "Short", { x: 0.2, y: 0.1, z: 0 }, 2.0, 6, 0),
     new Bone("Metatarsals", "Long", { x: 0, y: -0.2, z: 0 }, 5.0, 2, 0),
     new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, 0),
 ];
@@ -191,68 +215,68 @@ function handleGuess() {
     row[guessCount * 2 + 1].style.display = "none";
     row[guessCount++ * 2].style.display = "flex";
 
-const cellContents = [
-    guess.name,
-    guess.shape,
-    getRelativeDirection(guess, targetBone),
-    guess.length,
-    guess.connects
-];
+    const cellContents = [
+        guess.name,
+        guess.shape,
+        getRelativeDirection(guess, targetBone),
+        guess.length,
+        guess.connects
+    ];
 
-cells.forEach((cell, i) => {
-    // Clear content before reveal
-    cell.textContent = "";
-    setTimeout(() => {
-        cell.textContent = cellContents[i];
-        cell.classList.add("revealed");
-        setTimeout(() => cell.classList.remove("revealed"), 400);
-    }, i * 180); // 180ms delay between each cell
-});
+    cells.forEach((cell, i) => {
+        // Clear content before reveal
+        cell.textContent = "";
+        setTimeout(() => {
+            cell.textContent = cellContents[i];
+            cell.classList.add("revealed");
+            setTimeout(() => cell.classList.remove("revealed"), 400);
+        }, i * 180); // 180ms delay between each cell
+    });
 
     const upColor = "#B042FF"
     const downColor = "#E78F3A";
     const wrongColor = "#c14b2eff";
     const sameColor = "#56c079ff";
 
-cells.forEach((cell, i) => {
-    cell.textContent = "";
-    setTimeout(() => {
-        cell.textContent = cellContents[i];
-        cell.classList.add("revealed");
+    cells.forEach((cell, i) => {
+        cell.textContent = "";
+        setTimeout(() => {
+            cell.textContent = cellContents[i];
+            cell.classList.add("revealed");
 
-        // Animate background color in sync with reveal
-        if (i === 1) { // shape
-            cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
-        }
-        if (i === 2) { // direction
-            cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
-        }
-        if (i === 3) { // length
-            if (guess.length < targetBone.length) {
-                cell.style.backgroundColor = upColor;
-                cell.textContent += " ⬆️";
-            } else if (guess.length > targetBone.length) {
-                cell.style.backgroundColor = downColor;
-                cell.textContent += " ⬇️";
-            } else {
-                cell.style.backgroundColor = sameColor;
+            // Animate background color in sync with reveal
+            if (i === 1) { // shape
+                cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
             }
-        }
-        if (i === 4) { // connects
-            if (guess.connects < targetBone.connects) {
-                cell.style.backgroundColor = upColor;
-                cell.textContent += " ⬆️";
-            } else if (guess.connects > targetBone.connects) {
-                cell.style.backgroundColor = downColor;
-                cell.textContent += " ⬇️";
-            } else {
-                cell.style.backgroundColor = sameColor;
+            if (i === 2) { // direction
+                cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
             }
-        }
+            if (i === 3) { // length
+                if (guess.length < targetBone.length) {
+                    cell.style.backgroundColor = upColor;
+                    cell.textContent += " ⬆️";
+                } else if (guess.length > targetBone.length) {
+                    cell.style.backgroundColor = downColor;
+                    cell.textContent += " ⬇️";
+                } else {
+                    cell.style.backgroundColor = sameColor;
+                }
+            }
+            if (i === 4) { // connects
+                if (guess.connects < targetBone.connects) {
+                    cell.style.backgroundColor = upColor;
+                    cell.textContent += " ⬆️";
+                } else if (guess.connects > targetBone.connects) {
+                    cell.style.backgroundColor = downColor;
+                    cell.textContent += " ⬇️";
+                } else {
+                    cell.style.backgroundColor = sameColor;
+                }
+            }
 
-        setTimeout(() => cell.classList.remove("revealed"), 400);
-    }, i * 180);
-});
+            setTimeout(() => cell.classList.remove("revealed"), 400);
+        }, i * 180);
+    });
 
     //win condition
     if (guess.name === targetBone.name) {
@@ -263,4 +287,5 @@ cells.forEach((cell, i) => {
         answer.textContent = `Game over! The correct bone was ${targetBone.name}.`;
         button.disabled = true; // Disable button after max guesses
     }
+    input.focus();
 }
