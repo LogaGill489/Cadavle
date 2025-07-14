@@ -18,11 +18,18 @@
     <main>
         <div class="board">
             <div class="row">
-                <div class="frame bone">Intermediate Cuneiform</div>
-                <div class="frame shape">Irregular</div>
-                <div class="frame direction">Posterior</div>
-                <div class="frame length">47.74</div>
-                <div class="frame">3</div>
+                <div class="frame bone titles"></div>
+                <div class="frame shape titles"></div>
+                <div class="frame direction titles"></div>
+                <div class="frame length titles len_title"></div>
+                <div class="frame titles art_title"></div>
+            </div>
+            <div class="row">
+                <div class="frame bone"></div>
+                <div class="frame shape"></div>
+                <div class="frame direction"></div>
+                <div class="frame length"></div>
+                <div class="frame"></div>
             </div>
             <div class="row">
                 <div class="frame num"></div>
@@ -79,18 +86,22 @@
             </div>
             <div class="row">
                 <div class="input">
-                    <input id="myInput" type="text" placeholder=" Input A Bone!" autocomplete="off" class="frame inputf" list="boneList">
+                    <input id="myInput" type="text" placeholder=" Guess A Bone!" autocomplete="off" class="frame inputf" list="boneList">
                     <datalist id="boneList"></datalist>
-                    <button class ="frame buttonf">&numsp;Guess!</button>
+                    <button class="frame buttonf">&numsp;Guess!</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="frame winframe">Bone: Ulna</div>
+                <div class="frame wikipedia">
+                    <img src="resources/wikipediaLogo.png" alt="Wikipedia Logo" style="width:40px; height:auto; display:block; margin:auto;">
                 </div>
             </div>
         </div>
-        <div class="answer">
-
-        </div>
     </main>
     <footer>
-
+        <div class="answer">
+        </div>
     </footer>
 </body>
 
