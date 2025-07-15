@@ -23,12 +23,12 @@ Shape Types:
 
 const bones = [
     // Cranial bones
-    new Bone("Occipital", "Flat", { x: 0, y: 11.1, z: -0.7 }, 5.5, 6, 3, 3),
-    new Bone("Parietal", "Flat", { x: 0.3, y: 11.5, z: -0.5 }, 6.0, 5, 3, 3),
-    new Bone("Frontal", "Flat", { x: 0, y: 11.6, z: 0.2 }, 5.0, 12, 3, 3),
-    new Bone("Temporal", "Irregular", { x: 0.7, y: 10.9, z: -0.4 }, 4.5, 5, 3, 3),
-    new Bone("Sphenoid", "Irregular", { x: 0, y: 10.8, z: -0.2 }, 4.0, 12, 3, 3),
-    new Bone("Ethmoid", "Irregular", { x: 0, y: 11, z: 0.2 }, 2.5, 13, 3, 3),
+    new Bone("Occipital", "Flat", { x: 0, y: 11.1, z: -0.7 }, 5.5, 6, 2, 3),
+    new Bone("Parietal", "Flat", { x: 0.3, y: 11.5, z: -0.5 }, 6.0, 5, 2, 3),
+    new Bone("Frontal", "Flat", { x: 0, y: 11.6, z: 0.2 }, 5.0, 12, 2, 3),
+    new Bone("Temporal", "Irregular", { x: 0.7, y: 10.9, z: -0.4 }, 4.5, 5, 2, 3),
+    new Bone("Sphenoid", "Irregular", { x: 0, y: 10.8, z: -0.2 }, 4.0, 12, 2, 3),
+    new Bone("Ethmoid", "Irregular", { x: 0, y: 11, z: 0.2 }, 2.5, 13, 2, 3),
 
     // Facial bones
     new Bone("Nasal", "Flat", { x: 0, y: 11.1, z: 0.5 }, 2.0, 4, 2, 3),
