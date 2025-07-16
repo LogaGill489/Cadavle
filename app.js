@@ -226,7 +226,7 @@ function endGame() {
 
     if (gameState === 0) {
         const resetButton = row[14].querySelector(".endless-repeat");
-        //resetButton.style.display = "none"; // Hide the reset button in daily mode
+        resetButton.style.display = "none"; // Hide the reset button in daily mode
     }
 
     const winFrame = row[14].querySelector(".winframe");
