@@ -115,12 +115,18 @@ answer[0].style.fontSize = "2rem";
 */
 
 // game state -> default is 0 (daily), 1 (endless)
-let gameState = 1;
+let gameState = 0;
+
+const swap_button = document.querySelector("button.gamemode-button");
+swap_button.addEventListener("click", swapGamemodes);
 
 // Input and button
 const input = document.getElementById("myInput");
 const button = document.querySelector("button.buttonf");
 button.addEventListener("click", runInputHandler);
+
+const reset_game_button = document.querySelector("button.reset-endless");
+reset_game_button.addEventListener("click", resetGame);
 
 //rows and cell setup
 const row = document.getElementsByClassName("row"); // Replace with dynamic logic
@@ -170,6 +176,21 @@ input.addEventListener("keydown", function (event) {
     }
 });
 
+function swapGamemodes() {
+    if (gameState === 0) { //from daily to endless
+        gameState = 1;
+        resetGame();
+        const resetButton = row[14].querySelector(".endless-repeat");
+        resetButton.style.display = "flex"; // Shows the reset button in endless mode
+    }
+    else {
+        gameState = 0;
+        resetGame();
+        displayPrevGuesses();
+    }
+    input.focus();
+}
+
 //gets the direction of the guess relative to the target bone
 function getRelativeDirection(guess, target) {
     const dx = target.position.x - guess.position.x;
@@ -203,6 +224,11 @@ function endGame() {
     row[13].style.display = "none";
     row[14].style.display = "flex";
 
+    if (gameState === 0) {
+        const resetButton = row[14].querySelector(".endless-repeat");
+        //resetButton.style.display = "none"; // Hide the reset button in daily mode
+    }
+
     const winFrame = row[14].querySelector(".winframe");
     winFrame.textContent = `Bone: ${targetBone.name}`;
 
@@ -235,25 +261,35 @@ function endGame() {
             break;
     }
     wikiDiv.innerHTML = `<a href="https://en.wikipedia.org/wiki/${encodeURIComponent(wikiName)}" target="_blank">
-    <img src="resources/wikipediaLogo.png" alt="Wikipedia Logo" style="width:40px; height:auto; display:block; margin:auto;">
+    <img src="resources/wikipediaLogo.png" alt="Wikipedia Logo" title="Learn More About This Bone!" style="width:40px; height:40px; display:block; margin:auto;">
     </a>`;
 }
 
 function resetGame() {
     const rows = document.getElementsByClassName("row");
+    guessCount = 0;
+    prevGuesses = [];
     // Hide rows at index 0, 2, 4, 6, 8, 10
-    [0, 1, 3, 5, 7, 9, 11, 14].forEach(i => {
-        if (rows[i]) {
-            rows[i].style.display = "none";
-        }
+    [0, 1, 3, 5, 7, 9, 11].forEach(i => {
+        rows[i].style.display = "none";
+        const cells = row[i].querySelectorAll(".frame");
+        cells.forEach((cell) => {
+            cell.style.backgroundColor = "transparent";
+        });
     });
+    rows[14].style.display = "none"; // Hide the win row initially
     [2, 4, 6, 8, 10, 12, 13].forEach(i => {
-        if (!rows[i]) {
-            rows[i].style.display = "flex";
-        }
+        rows[i].style.display = "flex";
     });
-    if (gameState === 0) dailyBone();
-    else targetBone = bones[Math.floor(Math.random() * bones.length)];
+    const doc_title = document.getElementsByClassName("header-title");
+    if (gameState === 0)  {
+        dailyBone();
+        doc_title[0].textContent = "Cadavle - Daily";
+    }
+    else {
+        targetBone = bones[Math.floor(Math.random() * bones.length)];
+        doc_title[0].textContent = "Cadavle - Endless";
+    }
 }
 
 window.onload = function () {

@@ -14,7 +14,6 @@
 
 * {
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -38,6 +37,37 @@ header {
   width: 60%;
   margin-bottom: 10px;
   margin-top: 15px;
+}
+
+.header-eles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.left-header-imgs {
+  justify-self: start;
+  margin-left: 5%;
+  margin-top: 5px;
+}
+
+.right-header-imgs {
+  justify-self: end;
+  margin-right: 5%;
+  margin-top: 5px;
+}
+
+.gamemode-button, .reset-endless {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.header-title {
+  font-size: calc(1.1vw + 9px);
 }
 
 hr {
@@ -114,13 +144,15 @@ hr {
   background-color: #b042ff;
 }
 
-.wikipedia {
-    transition: transform 0.2s, background-color 0.2s;
+.wikipedia, .endless-repeat {
+  width: 42px !important;
+  height: 42px !important;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
-.wikipedia:hover {
-    transform: scale(1.08);
-    background-color: #645955;
+.wikipedia:hover, .endless-repeat:hover {
+  transform: scale(1.08);
+  background-color: #1d1e23;
 }
 
 .input {
@@ -152,15 +184,15 @@ hr {
   height: 42px;
   background-color: rgb(223, 170, 64);
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: calc(0.5vw + 10px);
   transition: background-color 0.2s;
   line-height: 2.5;
 }
 
-.wikipedia {
-  width: 42px !important;
-  height: 42px;
-}
+  .header-imgs {
+    width: calc(0.8vw + 19px);
+    height: calc(0.8vw + 19px);
+  }
 
 @keyframes revealCell {
   0% {
@@ -233,6 +265,10 @@ hr {
 
   .len_title {
     right: 4px;
+  }
+
+  .headline {
+    width: 80%;
   }
 }
 

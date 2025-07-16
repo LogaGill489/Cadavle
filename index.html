@@ -14,7 +14,19 @@
 <body>
     <header>
         <div class="headline">
-            <h1>Cadavle</h1>
+            <div class="header-eles">
+                <div class="left-header-imgs">
+                    <a href="https://www.linkedin.com/in/logan-gillett-941797327/" target="_blank"><img class="header-imgs" src="resources/linkedin.png" alt="LinkedIn" title="Connect With Me On Linkedin!" width="32" height="32" /></a>
+                    &nbsp;
+                    <a href="https://github.com/LogaGill489/Cadavle" target="_blank"><img class="header-imgs" src="resources/github.png" alt="GitHub" title="See How This Was Made!" width="32" height="32" /></a>
+                </div>
+                <h1 class="header-title">Cadavle</h1>
+                <div class="right-header-imgs">
+                    <button class="gamemode-button"><img class="header-imgs" src="resources/swap.png" alt="Swap Gamemodes" title="Swap Gamemodes!" width="32" height="32" /></button>
+                    &nbsp;
+                    <a href="https://github.com/LogaGill489/Cadavle" target="_blank"><img class="header-imgs" src="resources/info.png" alt="Game Info" title="Game Info (Coming Soon)" width="32" height="32" /></a>
+                </div>
+            </div>
             <hr>
         </div>
     </header>
@@ -89,15 +101,23 @@
             </div>
             <div class="row">
                 <div class="input">
-                    <input id="myInput" type="text" placeholder=" Guess A Bone!" autocomplete="off" class="frame inputf" list="boneList">
+                    <input id="myInput" type="text" placeholder=" Guess A Bone!" autocomplete="off" class="frame inputf"
+                        list="boneList">
                     <datalist id="boneList"></datalist>
                     <button class="frame buttonf">Guess!</button>
                 </div>
             </div>
             <div class="row">
+                <div class="frame endless-repeat">
+                    <button class="reset-endless">
+                    <img src="resources/reset.png" alt="reset" title="Reset Endless Mode!"
+                        style="width:40px; height:auto; display:block; margin:auto;">
+                    </button>
+                </div>
                 <div class="frame winframe">Bone: Ulna</div>
                 <div class="frame wikipedia">
-                    <img src="resources/wikipediaLogo.png" alt="Wikipedia Logo" style="width:40px; height:auto; display:block; margin:auto;">
+                    <img src="resources/wikipediaLogo.png" alt="Wikipedia Logo" title="Learn More About This Bone!"
+                        style="width:40px; height:auto; display:block; margin:auto;">
                 </div>
             </div>
         </div>
