@@ -107,10 +107,6 @@ const bones = [
     new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, 0, 4),
 ];
 
-// Random bone to guess
-let targetBone = bones[Math.floor(Math.random() * bones.length)];
-let guessCount = 0;
-
 /*
 targetBone = bones.find(b => b.name === "Inferior Nasal Concha"); // For testing purposes, set a specific target bone
 const answer = document.getElementsByClassName("answer");
@@ -118,10 +114,13 @@ answer[0].textContent = targetBone.name;
 answer[0].style.fontSize = "2rem";
 */
 
+// game state -> default is 0 (daily), 1 (endless)
+let gameState = 1;
+
 // Input and button
 const input = document.getElementById("myInput");
 const button = document.querySelector("button.buttonf");
-button.addEventListener("click", handleGuess);
+button.addEventListener("click", runInputHandler);
 
 //rows and cell setup
 const row = document.getElementsByClassName("row"); // Replace with dynamic logic
@@ -130,6 +129,48 @@ let cells;
 // Storage
 let prevGuesses = [];
 
+// Random bone to guess
+let targetBone = bones[Math.floor(Math.random() * bones.length)];
+let guessCount = 0;
+
+//Stores previous daily bones & guesses
+const previousBones = [];
+const previousGuesses = JSON.parse(localStorage.getItem("previousGuesses")) || [];
+
+// Populate the bone selector dropdown
+const boneSelector = document.getElementById("boneList");
+bones.forEach(bone => {
+    const option = document.createElement("option");
+    option.value = bone.name;
+    boneSelector.appendChild(option);
+});
+
+function runInputHandler() {
+    handleGuess(input.value.trim(), false);
+}
+
+// Enter key functionality
+// This allows the user to press Enter to submit their guess
+input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        // If input is not an exact match, autocomplete with the first suggestion
+        const userInput = input.value.trim().toLowerCase();
+        if (userInput) {
+            const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
+            if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
+            else handleGuess(input.value.trim(), false);
+        }
+    }
+    if (event.key === "Tab") {
+        const userInput = input.value.trim().toLowerCase();
+        if (userInput) {
+            const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
+            if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
+        }
+    }
+});
+
+//gets the direction of the guess relative to the target bone
 function getRelativeDirection(guess, target) {
     const dx = target.position.x - guess.position.x;
     const dy = target.position.y - guess.position.y;
@@ -157,44 +198,7 @@ function getRelativeDirection(guess, target) {
     return direction;
 }
 
-window.onload = function () {
-    const rows = document.getElementsByClassName("row");
-    // Hide rows at index 0, 2, 4, 6, 8, 10
-    [0, 1, 3, 5, 7, 9, 11, 14].forEach(i => {
-        if (rows[i]) {
-            rows[i].style.display = "none";
-        }
-    });
-};
-
-const boneSelector = document.getElementById("boneList");
-bones.forEach(bone => {
-    const option = document.createElement("option");
-    option.value = bone.name;
-    boneSelector.appendChild(option);
-});
-
-// Enter key functionality
-// This allows the user to press Enter to submit their guess
-input.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        // If input is not an exact match, autocomplete with the first suggestion
-        const userInput = input.value.trim().toLowerCase();
-        if (userInput) {
-            const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
-            if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
-            else handleGuess();
-        }
-    }
-    if (event.key === "Tab") {
-        const userInput = input.value.trim().toLowerCase();
-        if (userInput) {
-            const firstMatch = bones.find(b => b.name.toLowerCase().startsWith(userInput));
-            if (firstMatch && firstMatch.name.toLowerCase() !== userInput) input.value = firstMatch.name;
-        }
-    }
-});
-
+// Function to end the game and display results
 function endGame() {
     row[13].style.display = "none";
     row[14].style.display = "flex";
@@ -235,9 +239,67 @@ function endGame() {
     </a>`;
 }
 
-function handleGuess() {
+function resetGame() {
+    const rows = document.getElementsByClassName("row");
+    // Hide rows at index 0, 2, 4, 6, 8, 10
+    [0, 1, 3, 5, 7, 9, 11, 14].forEach(i => {
+        if (rows[i]) {
+            rows[i].style.display = "none";
+        }
+    });
+    [2, 4, 6, 8, 10, 12, 13].forEach(i => {
+        if (!rows[i]) {
+            rows[i].style.display = "flex";
+        }
+    });
+    if (gameState === 0) dailyBone();
+    else targetBone = bones[Math.floor(Math.random() * bones.length)];
+}
+
+window.onload = function () {
+    resetGame();
+    if (gameState === 0) displayPrevGuesses();
+    input.focus();
+};
+
+//generate a new bone for the daily challenge
+function dailyBone() {
+    const today = new Date();
+    const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+
+    let hash = 0;
+    for (let i = 0; i < dateStr.length; i++) {
+        hash = (hash << 5) - hash + dateStr.charCodeAt(i);
+        hash |= 0;
+    }
+
+    const index = Math.abs(hash) % bones.length;
+    targetBone = bones[index];
+}
+
+function displayPrevGuesses() {
+    // Get today's date as a key
+    const today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+    const existing = JSON.parse(localStorage.getItem(today)) || [];
+    for (guessCount; guessCount < existing.length;) handleGuess(existing[guessCount], true);
+}
+
+function saveGuess(boneName) {
+    // Get today's date as a key
+    const today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+
+    // Get existing guesses for today (or create an empty array)
+    const existing = JSON.parse(localStorage.getItem(today)) || [];
+
+    // Add the new guess
+    existing.push(boneName);
+
+    // Save it back
+    localStorage.setItem(today, JSON.stringify(existing));
+}
+
+function handleGuess(userInput, dontAnimate) {
     cells = row[guessCount * 2 + 1].querySelectorAll(".frame");
-    const userInput = input.value.trim();
     if (!userInput) return; //makes sure there is an actual input
 
     //removes any case sensitivity and makes sure that the input is stored
@@ -255,6 +317,10 @@ function handleGuess() {
     }
 
     prevGuesses.push(guess.name);
+    if (gameState === 0 && !dontAnimate) {
+        // Save the guess to local storage for daily challenges
+        saveGuess(guess.name);
+    }
 
     // Clear input field
     input.value = "";
@@ -279,73 +345,143 @@ function handleGuess() {
         "Articulates"
     ]
 
-    // Animate top UI row on first guess
-    if (guessCount === 1) {
-            row[0].style.display = "flex";
-            const cellsOne = row[0].querySelectorAll(".frame");
-            cellsOne.forEach((cell, i) => {
-            setTimeout(() => {
-                cell.textContent = titleContents[i];
-                cell.classList.add("revealed");
-                setTimeout(() => cell.classList.remove("revealed"), 400);
-            }, i * 180); // 180ms delay between each cell
-        });
-    }
-
-    cells.forEach((cell, i) => {
-        // Clear content before reveal
-        cell.textContent = "";
-        setTimeout(() => {
-            cell.textContent = cellContents[i];
-            cell.classList.add("revealed");
-            setTimeout(() => cell.classList.remove("revealed"), 400);
-        }, i * 180); // 180ms delay between each cell
-    });
-
     const upColor = "#B042FF"
     const downColor = "#E78F3A";
     const wrongColor = "#c14b2eff";
     const sameColor = "#56c079ff";
 
-    cells.forEach((cell, i) => {
-        cell.textContent = "";
-        setTimeout(() => {
-            cell.textContent = cellContents[i];
-            cell.classList.add("revealed");
+    if (!dontAnimate) {
+        // Animate top UI row on first guess
+        if (guessCount === 1) {
+            row[0].style.display = "flex";
+            const cellsOne = row[0].querySelectorAll(".frame");
+            cellsOne.forEach((cell, i) => {
+                setTimeout(() => {
+                    cell.textContent = titleContents[i];
+                    cell.classList.add("revealed");
+                    setTimeout(() => cell.classList.remove("revealed"), 400);
+                }, i * 180); // 180ms delay between each cell
+            });
+        }
 
-            // Animate background color in sync with reveal
-            if (i === 1) { // shape
-                cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
-            }
-            if (i === 2) { // direction
-                cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
-            }
-            if (i === 3) { // length
-                if (guess.length < targetBone.length) {
-                    cell.style.backgroundColor = upColor;
-                    cell.textContent += " ⬆️";
-                } else if (guess.length > targetBone.length) {
-                    cell.style.backgroundColor = downColor;
-                    cell.textContent += " ⬇️";
-                } else {
-                    cell.style.backgroundColor = sameColor;
-                }
-            }
-            if (i === 4) { // connects
-                if (guess.connects < targetBone.connects) {
-                    cell.style.backgroundColor = upColor;
-                    cell.textContent += " ⬆️";
-                } else if (guess.connects > targetBone.connects) {
-                    cell.style.backgroundColor = downColor;
-                    cell.textContent += " ⬇️";
-                } else {
-                    cell.style.backgroundColor = sameColor;
-                }
-            }
+        //Add inputed data into the cells
+        cells.forEach((cell, i) => {
+            // Clear content before reveal
+            cell.textContent = "";
+            setTimeout(() => {
+                cell.textContent = cellContents[i];
+                cell.classList.add("revealed");
+                setTimeout(() => cell.classList.remove("revealed"), 400);
+            }, i * 180); // 180ms delay between each cell
+        });
 
-            setTimeout(() => cell.classList.remove("revealed"), 400);
-        }, i * 180);
-    });
+        //Add the background color to the cells based on the guess
+        cells.forEach((cell, i) => {
+            cell.textContent = "";
+            setTimeout(() => {
+                cell.textContent = cellContents[i];
+                cell.classList.add("revealed");
+
+                // Animate background color in sync with reveal
+                if (i === 1) { // shape
+                    cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
+                }
+                if (i === 2) { // direction
+                    cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
+                }
+                if (i === 3) { // length
+                    if (guess.length < targetBone.length) {
+                        cell.style.backgroundColor = upColor;
+                        cell.textContent += " ⬆️";
+                    } else if (guess.length > targetBone.length) {
+                        cell.style.backgroundColor = downColor;
+                        cell.textContent += " ⬇️";
+                    } else {
+                        cell.style.backgroundColor = sameColor;
+                    }
+                }
+                if (i === 4) { // connects
+                    if (guess.connects < targetBone.connects) {
+                        cell.style.backgroundColor = upColor;
+                        cell.textContent += " ⬆️";
+                    } else if (guess.connects > targetBone.connects) {
+                        cell.style.backgroundColor = downColor;
+                        cell.textContent += " ⬇️";
+                    } else {
+                        cell.style.backgroundColor = sameColor;
+                    }
+                }
+
+                setTimeout(() => cell.classList.remove("revealed"), 400);
+            }, i * 180);
+        });
+    }
+    else {
+        // Animate top UI row on first guess
+        if (guessCount === 1) {
+            row[0].style.display = "flex";
+            const cellsOne = row[0].querySelectorAll(".frame");
+            cellsOne.forEach((cell, i) => {
+                setTimeout(() => {
+                    cell.textContent = titleContents[i];
+                    cell.classList.add("revealed");
+                    setTimeout(() => cell.classList.remove("revealed"), 400);
+                }, i); // 180ms delay between each cell
+            });
+        }
+
+        //Add inputed data into the cells
+        cells.forEach((cell, i) => {
+            // Clear content before reveal
+            cell.textContent = "";
+            setTimeout(() => {
+                cell.textContent = cellContents[i];
+                cell.classList.add("revealed");
+                setTimeout(() => cell.classList.remove("revealed"), 400);
+            }, i); // 180ms delay between each cell
+        });
+
+        //Add the background color to the cells based on the guess
+        cells.forEach((cell, i) => {
+            cell.textContent = "";
+            setTimeout(() => {
+                cell.textContent = cellContents[i];
+                cell.classList.add("revealed");
+
+                // Animate background color in sync with reveal
+                if (i === 1) { // shape
+                    cell.style.backgroundColor = guess.shape !== targetBone.shape ? wrongColor : sameColor;
+                }
+                if (i === 2) { // direction
+                    cell.style.backgroundColor = getRelativeDirection(guess, targetBone) !== "Same" ? upColor : sameColor;
+                }
+                if (i === 3) { // length
+                    if (guess.length < targetBone.length) {
+                        cell.style.backgroundColor = upColor;
+                        cell.textContent += " ⬆️";
+                    } else if (guess.length > targetBone.length) {
+                        cell.style.backgroundColor = downColor;
+                        cell.textContent += " ⬇️";
+                    } else {
+                        cell.style.backgroundColor = sameColor;
+                    }
+                }
+                if (i === 4) { // connects
+                    if (guess.connects < targetBone.connects) {
+                        cell.style.backgroundColor = upColor;
+                        cell.textContent += " ⬆️";
+                    } else if (guess.connects > targetBone.connects) {
+                        cell.style.backgroundColor = downColor;
+                        cell.textContent += " ⬇️";
+                    } else {
+                        cell.style.backgroundColor = sameColor;
+                    }
+                }
+
+                setTimeout(() => cell.classList.remove("revealed"), 400);
+            }, i);
+        });
+    }
 
     //win condition
     if (guess.name === targetBone.name) {
