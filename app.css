@@ -189,9 +189,26 @@ hr {
   height: 42px;
   background-color: rgb(223, 170, 64);
   border-radius: 12px;
-  font-size: calc(0.5vw + 16px);
+  font-size: calc(0.8vw + 7px);
   transition: background-color 0.2s;
   line-height: 2.5;
+}
+
+.error-output {
+  color: #d6873d;
+  font-size: calc(0.7vw + 6px);;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.footer-line {
+  font-size: calc(0.7vw + 6px);
+  color: #cca481;
+  position: absolute;
+  bottom: 5px;
+  gap: 30px;
+  text-align: center;
+  width: 100%;
 }
 
 @keyframes revealCell {

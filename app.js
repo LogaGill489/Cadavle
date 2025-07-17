@@ -256,6 +256,9 @@ function endGame() {
         case 7:
             wikiName = "Cuneiform_bones";
             break;
+        case 8:
+             wikiName = "Ulnar_nerve";
+            break;
         default:
             // leave wikiName as is
             break;
@@ -303,6 +306,18 @@ function dailyBone() {
     const today = new Date();
     const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
+    // Check if today is April 1st for the special Funny Bone
+    if (`${today.getMonth() + 1}-${today.getDate()}` === "4-01") {
+        bones.push(new Bone("Funny Bone", "Long", { x: 1.79, y: 6.0, z: 0 }, 72.0, 0, 1, 8));
+        targetBone = bones[bones.length - 1]; // Set the target bone to the new Funny Bone
+
+        // Update the dropdown selector
+        const option = document.createElement("option");
+        option.value = bones[bones.length - 1].name;
+        boneSelector.appendChild(option);
+        return;
+    }
+
     let hash = 0;
     for (let i = 0; i < dateStr.length; i++) {
         hash = (hash << 5) - hash + dateStr.charCodeAt(i);
@@ -342,15 +357,18 @@ function handleGuess(userInput, dontAnimate) {
     const guess = bones.find(b => b.name.toLowerCase() === userInput.toLowerCase());
 
     //code to make sure that the guess actually in the database
+    const err_ouput = document.getElementsByClassName("error-output");
     if (!guess) {
-        alert("Bone not found! Try another.");
+        err_ouput[0].textContent = "Bone not found! Try another.";
         return;
     }
 
     if (guessCount > 0 && prevGuesses.includes(guess.name)) {
-        alert("You already guessed that bone! Try another.");
+        err_ouput[0].textContent = "You already guessed that bone! Try another.";
         return;
     }
+
+    err_ouput[0].textContent = ""; // Clear error message if guess is valid
 
     prevGuesses.push(guess.name);
     if (gameState === 0 && !dontAnimate) {
