@@ -60,7 +60,8 @@ header {
   margin-top: 5px;
 }
 
-.gamemode-button, .reset-endless {
+.gamemode-button,
+.reset-endless {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -80,13 +81,13 @@ hr {
 }
 
 .board {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    grid-column: 2;
-    font-weight: 700;
-    font-size: 1.2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  font-weight: 700;
+  font-size: 1.2vw;
 }
 
 .row {
@@ -95,9 +96,12 @@ hr {
 }
 
 .frame {
-  display: flex; /* enables flexbox */
-  align-items: center; /* vertical centering */
-  justify-content: center; /* horizontal centering */
+  display: flex;
+  /* enables flexbox */
+  align-items: center;
+  /* vertical centering */
+  justify-content: center;
+  /* horizontal centering */
 
   background-color: #474153;
   height: 32px;
@@ -110,7 +114,8 @@ hr {
   transition: all 1s;
 }
 
-.art_title, .len_title {
+.art_title,
+.len_title {
   right: 10px;
 }
 
@@ -122,7 +127,8 @@ hr {
   width: 5.5vw;
 }
 
-.shape, .direction {
+.shape,
+.direction {
   width: 7vw;
 }
 
@@ -131,12 +137,15 @@ hr {
   background-color: #332f3b;
 }
 
-.inputf, .buttonf {
-    font-family: inherit; /* or specify your desired font */
-    font-size: 1.2vw;      /* or match your .frame font size */
-    outline: 1px solid #ffffff;
-    background-color: #747376;
-    text-align: left;
+.inputf,
+.buttonf {
+  font-family: inherit;
+  /* or specify your desired font */
+  font-size: 1.2vw;
+  /* or match your .frame font size */
+  outline: 1px solid #ffffff;
+  background-color: #747376;
+  text-align: left;
 }
 
 .buttonf {
@@ -149,13 +158,15 @@ hr {
   background-color: #b042ff;
 }
 
-.wikipedia, .endless-repeat {
+.wikipedia,
+.endless-repeat {
   width: 42px !important;
   height: 42px !important;
   transition: transform 0.2s, background-color 0.2s;
 }
 
-.wikipedia:hover, .endless-repeat:hover {
+.wikipedia:hover,
+.endless-repeat:hover {
   transform: scale(1.08);
   background-color: #1d1e23;
 }
@@ -164,21 +175,22 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px; /* optional: adds space between input and button */
+  gap: 8px;
+  /* optional: adds space between input and button */
 }
 
 .inputf {
-    width: calc(28vw + 24px);
-    border-radius: 6px;
-    transition: background-color 0.2s;
+  width: calc(28vw + 24px);
+  border-radius: 6px;
+  transition: background-color 0.2s;
 }
 
 .inputf:focus {
-    background-color: #8e8e90;
+  background-color: #8e8e90;
 }
 
 .titles {
-  outline:0px;
+  outline: 0px;
   background-color: transparent;
   font-size: 0.94vw;
   height: 20px;
@@ -196,7 +208,8 @@ hr {
 
 .error-output {
   color: #d6873d;
-  font-size: calc(0.7vw + 6px);;
+  font-size: calc(0.7vw + 6px);
+  ;
   text-align: center;
   margin-top: 10px;
 }
@@ -216,10 +229,12 @@ hr {
     opacity: 0;
     transform: scale(0.96);
   }
+
   60% {
     opacity: 1;
     transform: scale(1.04);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -227,7 +242,10 @@ hr {
 }
 
 @media (max-width: 800px) {
-  .board, .inputf, .buttonf {
+
+  .board,
+  .inputf,
+  .buttonf {
     font-size: 2.4vw;
   }
 
@@ -238,15 +256,17 @@ hr {
   .frame {
     width: 8vw;
   }
+
   .bone {
     width: 29vw;
   }
-  
+
   .length {
     width: 11vw;
   }
-  
-  .shape, .direction {
+
+  .shape,
+  .direction {
     width: 14vw;
   }
 
@@ -267,8 +287,11 @@ hr {
   }
 }
 
-@media (max-width: 500px) { 
-  .board, .inputf, .buttonf {
+@media (max-width: 500px) {
+
+  .board,
+  .inputf,
+  .buttonf {
     font-size: 2.8vw;
   }
 
@@ -286,6 +309,12 @@ hr {
 
   .headline {
     width: 80%;
+  }
+}
+
+@media (max-height: 400px) {
+  .footer-line {
+    position: relative;
   }
 }
 

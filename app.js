@@ -143,6 +143,9 @@ let guessCount = 0;
 const previousBones = [];
 const previousGuesses = JSON.parse(localStorage.getItem("previousGuesses")) || [];
 
+//Stores the current date for daily challenges
+let sessionDate = new Date().toISOString().split('T')[0];
+
 // Populate the bone selector dropdown
 const boneSelector = document.getElementById("boneList");
 bones.forEach(bone => {
@@ -294,6 +297,18 @@ function resetGame() {
         doc_title[0].textContent = "Cadavle - Endless";
     }
 }
+
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+        const currentDate = new Date().toISOString().split('T')[0];
+        if (currentDate !== sessionDate) {
+            sessionDate = currentDate;
+            resetGame();
+            if (gameState === 0) displayPrevGuesses();
+            input.focus();
+        }
+    }
+});
 
 window.onload = function () {
     resetGame();
