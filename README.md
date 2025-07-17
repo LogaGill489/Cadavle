@@ -36,6 +36,10 @@ low (blue), which will help the player with future guessing. Below you can see w
 
 <img src="Cadavle-Example.png">
 
+## Important Note
+
+This game is not perfect! I made the coordinates myself without using any database, and it is entirely possible that there are mistakes in the directions. If you find one, PLEASE tell me about it so I can fix it. Thanks!
+
 <!-- LICENSE -->
 ## License
 
