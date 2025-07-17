@@ -298,16 +298,25 @@ function resetGame() {
     }
 }
 
+function checkForNewDay() {
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (currentDate !== sessionDate) {
+        sessionDate = currentDate;
+        resetGame();
+        if (gameState === 0) displayPrevGuesses();
+        input.focus();
+    }
+}
+
 document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
-        const currentDate = new Date().toISOString().split('T')[0];
-        if (currentDate !== sessionDate) {
-            sessionDate = currentDate;
-            resetGame();
-            if (gameState === 0) displayPrevGuesses();
-            input.focus();
-        }
+        checkForNewDay(); // Check if a new day has started when the page becomes visible
     }
+});
+
+// When window regains focus
+window.addEventListener("focus", () => {
+    checkForNewDay();
 });
 
 window.onload = function () {
