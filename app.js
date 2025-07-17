@@ -50,11 +50,11 @@ const bones = [
     new Bone("Scaphoid", "Short", { x: 2.0, y: 5.4, z: 0 }, 2.8, 5, 1, 3),
     new Bone("Lunate", "Short", { x: 1.7, y: 5.4, z: 0 }, 2.0, 5, 1, 3),
     new Bone("Triquetrum", "Short", { x: 1.59, y: 5.3, z: 0 }, 2.0, 3, 1, 3),
-    new Bone("Pisiform", "Short", { x: 1.6, y: 5.3, z: 0.2 }, 1.5, 1, 1, 3),
+    new Bone("Pisiform", "Short", { x: 1.59, y: 5.3, z: 0.2 }, 1.5, 1, 1, 3),
     new Bone("Trapezium", "Short", { x: 2.1, y: 5.1, z: 0 }, 1.8, 4, 1, 1),
     new Bone("Trapezoid", "Short", { x: 1.9, y: 5.1, z: 0 }, 1.7, 4, 1, 3),
-    new Bone("Capitate", "Short", { x: 1.9, y: 5.0, z: 0 }, 2.9, 7, 1, 3),
-    new Bone("Hamate", "Short", { x: 1.5, y: 5.0, z: 0 }, 2.3, 5, 1, 3),
+    new Bone("Capitate", "Short", { x: 1.8, y: 5.1, z: 0 }, 2.9, 7, 1, 3),
+    new Bone("Hamate", "Short", { x: 1.5, y: 5.1, z: 0 }, 2.3, 5, 1, 3),
 
     // Metacarpals + Phalanges - grouped checked
     new Bone("Metacarpals", "Long", { x: 1.8, y: 4.7, z: 0 }, 5.0, 2, 1, 2),

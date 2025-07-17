@@ -67,7 +67,12 @@ header {
 }
 
 .header-title {
-  font-size: calc(1.1vw + 9px);
+  font-size: calc(1.2vw + 6px);
+}
+
+.header-imgs {
+  width: calc(1.3vw + 12px);
+  height: calc(1.3vw + 12px);
 }
 
 hr {
@@ -184,15 +189,10 @@ hr {
   height: 42px;
   background-color: rgb(223, 170, 64);
   border-radius: 12px;
-  font-size: calc(0.5vw + 10px);
+  font-size: calc(0.5vw + 16px);
   transition: background-color 0.2s;
   line-height: 2.5;
 }
-
-  .header-imgs {
-    width: calc(0.8vw + 19px);
-    height: calc(0.8vw + 19px);
-  }
 
 @keyframes revealCell {
   0% {
