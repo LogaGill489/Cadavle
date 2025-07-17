@@ -34,6 +34,7 @@ colours indicate weather the guess is incorrect,
 low (blue), which will help the player with future guessing. Below you can see what a full game might look like. I truly hope you enjoy it! It was made for my girlfriend, though I know many anatomy lovers will have some fun too!
 </p>
 
+<img src="Cadavle-Example.png">
 
 <!-- LICENSE -->
 ## License
@@ -65,4 +66,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-url]: https://github.com/logagill489/Cadavle/issues
 
 [license-shield]: https://img.shields.io/github/license/logagill489/Cadavle.svg?style=for-the-badge
-[license-url]: https://github.com/logagill489/Cadavle/blob/main/LICENSE
+[license-url]: https://github.com/logagill489/Cadavle/blob/main/LICENSE.txt
