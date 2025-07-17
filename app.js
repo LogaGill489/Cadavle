@@ -23,11 +23,11 @@ Shape Types:
 
 const bones = [
     // Cranial bones
-    new Bone("Occipital", "Flat", { x: 0, y: 11.1, z: -0.7 }, 5.5, 6, 2, 3),
-    new Bone("Parietal", "Flat", { x: 0.3, y: 11.5, z: -0.5 }, 6.0, 5, 2, 3),
-    new Bone("Frontal", "Flat", { x: 0, y: 11.6, z: 0.2 }, 5.0, 12, 2, 3),
-    new Bone("Temporal", "Irregular", { x: 0.7, y: 10.9, z: -0.4 }, 4.5, 5, 2, 3),
-    new Bone("Sphenoid", "Irregular", { x: 0, y: 10.8, z: -0.2 }, 4.0, 12, 2, 3),
+    new Bone("Occipital", "Flat", { x: 0, y: 11.1, z: -0.7 }, 2.32, 6, 2, 3),
+    new Bone("Parietal", "Flat", { x: 0.3, y: 11.5, z: -0.5 }, 7.2, 5, 2, 3),
+    new Bone("Frontal", "Flat", { x: 0, y: 11.6, z: 0.2 }, 12.0, 12, 2, 3),
+    new Bone("Temporal", "Irregular", { x: 0.7, y: 10.9, z: -0.4 }, 2.5, 5, 2, 3),
+    new Bone("Sphenoid", "Irregular", { x: 0, y: 10.8, z: -0.2 }, 2.2, 12, 2, 3),
     new Bone("Ethmoid", "Irregular", { x: 0, y: 11, z: 0.2 }, 2.5, 13, 2, 3),
 
     // Facial bones
@@ -93,18 +93,18 @@ const bones = [
 
     //legs and feet -- checked
     new Bone("Femur", "Long", { x: 0, y: 4, z: 0 }, 45.72, 2, 0),
-    new Bone("Patella", "Sesamoid", { x: 0, y: 3.5, z: 0 }, 4.5, 0, 0),
-    new Bone("Tibia", "Long", { x: -0.5, y: 2.5, z: 0 }, 40.0, 2, 0),
-    new Bone("Fibula", "Long", { x: 0.5, y: 2.5, z: 0 }, 40.0, 2, 0),
-    new Bone("Talus", "Short", { x: 0, y: 1, z: 0 }, 5.0, 4, 0, 3),
-    new Bone("Calcaneus", "Irregular", { x: 0, y: 0.7, z: 0 }, 5.5, 3, 0),
-    new Bone("Navicular", "Short", { x: 0.2, y: 0.4, z: 0 }, 4.0, 6, 0, 3),
-    new Bone("Cuboid", "Short", { x: 0.4, y: 0.2, z: 0 }, 4.0, 5, 0, 3),
-    new Bone("Medial Cuneiform", "Short", { x: -0.2, y: 0.1, z: 0 }, 2.0, 4, 0, 7),
-    new Bone("Intermediate Cuneiform", "Short", { x: 0, y: 0.1, z: 0 }, 2.0, 4, 0, 7),
-    new Bone("Lateral Cuneiform", "Short", { x: 0.2, y: 0.1, z: 0 }, 2.0, 6, 0, 7),
-    new Bone("Metatarsals", "Long", { x: 0, y: -0.2, z: 0 }, 5.0, 2, 0, 2),
-    new Bone("Foot Phalanges", "Long", { x: 0, y: -0.5, z: 0 }, 2.5, 2, 0, 4),
+    new Bone("Patella", "Sesamoid", { x: 0, y: 2.5, z: 0 }, 4.5, 0, 0),
+    new Bone("Tibia", "Long", { x: -0.5, y: 1.5, z: 0 }, 40.0, 2, 0),
+    new Bone("Fibula", "Long", { x: 0.5, y: 1.5, z: 0 }, 40.0, 2, 0),
+    new Bone("Talus", "Short", { x: 0, y: 0, z: 0 }, 5.0, 4, 0, 3),
+    new Bone("Calcaneus", "Irregular", { x: 0, y: -0.3, z: 0 }, 5.5, 3, 0),
+    new Bone("Navicular", "Short", { x: 0.2, y: -0.6, z: 0 }, 4.0, 6, 0, 3),
+    new Bone("Cuboid", "Short", { x: 0.4, y: -0.8, z: 0 }, 4.0, 5, 0, 3),
+    new Bone("Medial Cuneiform", "Short", { x: -0.2, y: -0.9, z: 0 }, 2.0, 4, 0, 7),
+    new Bone("Intermediate Cuneiform", "Short", { x: 0, y: -0.9, z: 0 }, 2.0, 4, 0, 7),
+    new Bone("Lateral Cuneiform", "Short", { x: 0.2, y: -0.9, z: 0 }, 2.0, 6, 0, 7),
+    new Bone("Metatarsals", "Long", { x: 0, y: -1.2, z: 0 }, 5.0, 2, 0, 2),
+    new Bone("Foot Phalanges", "Long", { x: 0, y: -1.5, z: 0 }, 2.5, 2, 0, 4),
 ];
 
 /*
