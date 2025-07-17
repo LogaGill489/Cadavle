@@ -224,6 +224,10 @@ hr {
   width: 100%;
 }
 
+.lower-hyper-link {
+  color: #efafd9;
+}
+
 @keyframes revealCell {
   0% {
     opacity: 0;

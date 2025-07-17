@@ -139,12 +139,9 @@ let prevGuesses = [];
 let targetBone = bones[Math.floor(Math.random() * bones.length)];
 let guessCount = 0;
 
-//Stores previous daily bones & guesses
-const previousBones = [];
-const previousGuesses = JSON.parse(localStorage.getItem("previousGuesses")) || [];
-
 //Stores the current date for daily challenges
 let sessionDate = new Date().toISOString().split('T')[0];
+//sessionDate = '2025-07-16'; // For testing purposes, set a specific date
 
 // Populate the bone selector dropdown
 const boneSelector = document.getElementById("boneList");
@@ -299,7 +296,8 @@ function resetGame() {
 }
 
 function checkForNewDay() {
-    const currentDate = new Date().toISOString().split('T')[0];
+    let currentDate = new Date().toISOString().split('T')[0];
+    //currentDate = '2025-07-16'; // For testing purposes, set a specific date
     if (currentDate !== sessionDate) {
         sessionDate = currentDate;
         resetGame();
@@ -316,7 +314,7 @@ document.addEventListener("visibilitychange", () => {
 
 // When window regains focus
 window.addEventListener("focus", () => {
-    checkForNewDay();
+   checkForNewDay();
 });
 
 window.onload = function () {
@@ -354,14 +352,16 @@ function dailyBone() {
 
 function displayPrevGuesses() {
     // Get today's date as a key
-    const today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+    let today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+    //today = '2025-07-16'; // For testing purposes, set a specific date
     const existing = JSON.parse(localStorage.getItem(today)) || [];
     for (guessCount; guessCount < existing.length;) handleGuess(existing[guessCount], true);
 }
 
 function saveGuess(boneName) {
     // Get today's date as a key
-    const today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+    let today = new Date().toISOString().split('T')[0]; // "2025-07-16"
+    //today = '2025-07-16'; // For testing purposes, set a specific date
 
     // Get existing guesses for today (or create an empty array)
     const existing = JSON.parse(localStorage.getItem(today)) || [];
