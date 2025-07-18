@@ -323,6 +323,31 @@ window.onload = function () {
     input.focus();
 };
 
+function shuffleWithSeed(array, seed) {
+    let m = array.length, t, i;
+
+    let seedNum = 0;
+    for (let j = 0; j < seed.length; j++) {
+        seedNum = (seedNum << 5) - seedNum + seed.charCodeAt(j);
+        seedNum |= 0;
+    }
+
+    function random() {
+        // Simple pseudo-random generator based on seed
+        const x = Math.sin(seedNum++) * 10000;
+        return x - Math.floor(x);
+    }
+
+    while (m) {
+        i = Math.floor(random() * m--);
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+
+    return array;
+}
+
 //generate a new bone for the daily challenge
 function dailyBone() {
     const today = new Date();
