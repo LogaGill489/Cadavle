@@ -272,7 +272,6 @@ function resetGame() {
     const rows = document.getElementsByClassName("row");
     guessCount = 0;
     prevGuesses = [];
-    // Hide rows at index 0, 2, 4, 6, 8, 10
     [0, 1, 3, 5, 7, 9, 11].forEach(i => {
         rows[i].style.display = "none";
         const cells = row[i].querySelectorAll(".frame");
@@ -284,6 +283,8 @@ function resetGame() {
     [2, 4, 6, 8, 10, 12, 13].forEach(i => {
         rows[i].style.display = "flex";
     });
+
+    //sets title based on game state
     const doc_title = document.getElementsByClassName("header-title");
     if (gameState === 0)  {
         dailyBone();
@@ -294,28 +295,6 @@ function resetGame() {
         doc_title[0].textContent = "Cadavle - Endless";
     }
 }
-
-function checkForNewDay() {
-    let currentDate = new Date().toISOString().split('T')[0];
-    //currentDate = '2025-07-16'; // For testing purposes, set a specific date
-    if (currentDate !== sessionDate) {
-        resetGame();
-        sessionDate = currentDate;
-        if (gameState === 0) displayPrevGuesses();
-        input.focus();
-    }
-}
-
-document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-        checkForNewDay(); // Check if a new day has started when the page becomes visible
-    }
-});
-
-// When window regains focus
-window.addEventListener("focus", () => {
-   checkForNewDay();
-});
 
 window.onload = function () {
     resetGame();
@@ -348,13 +327,22 @@ function shuffleWithSeed(array, seed) {
     return array;
 }
 
+String.prototype.removeCharAt = function (i) {
+    var tmp = this.split(''); // convert to an array
+    tmp.splice(i - 1 , 1); // remove 1 element from the array (adjusting for non-zero-indexed counts)
+    return tmp.join(''); // reconstruct the string
+}
+
 //generate a new bone for the daily challenge
 function dailyBone() {
-    const today = new Date();
-    const dateStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const today = sessionDate;
+
+    for (let i = 0; i < 5; i++) {
+        today.removeCharAt(0); // Remove the first 5 characters (YYYY-MM-DD)
+    }
 
     // Check if today is April 1st for the special Funny Bone
-    if (`${today.getMonth() + 1}-${today.getDate()}` === "4-01") {
+    if (today === "4-01") {
         bones.push(new Bone("Funny Bone", "Long", { x: 1.79, y: 6.0, z: 0 }, 72.0, 0, 1, 8));
         targetBone = bones[bones.length - 1]; // Set the target bone to the new Funny Bone
 
@@ -365,12 +353,13 @@ function dailyBone() {
         return;
     }
 
-    const shuffled = shuffleWithSeed(bones.slice(), dateStr);
+    const shuffled = shuffleWithSeed(bones.slice(), sessionDate);
     targetBone = shuffled[0];  // always the same per day, but more evenly random
 }
 
 function displayPrevGuesses() {
-    const existing = JSON.parse(localStorage.getItem(sessionDate)) || [];
+    const today = new Date().toISOString().split('T')[0];
+    const existing = JSON.parse(localStorage.getItem(today)) || [];
     for (guessCount; guessCount < existing.length;) handleGuess(existing[guessCount], true);
 }
 
