@@ -299,8 +299,8 @@ function checkForNewDay() {
     let currentDate = new Date().toISOString().split('T')[0];
     //currentDate = '2025-07-16'; // For testing purposes, set a specific date
     if (currentDate !== sessionDate) {
-        sessionDate = currentDate;
         resetGame();
+        sessionDate = currentDate;
         if (gameState === 0) displayPrevGuesses();
         input.focus();
     }
@@ -351,26 +351,17 @@ function dailyBone() {
 }
 
 function displayPrevGuesses() {
-    // Get today's date as a key
-    let today = new Date().toISOString().split('T')[0]; // "2025-07-16"
-    //today = '2025-07-16'; // For testing purposes, set a specific date
-    const existing = JSON.parse(localStorage.getItem(today)) || [];
+    const existing = JSON.parse(localStorage.getItem(sessionDate)) || [];
     for (guessCount; guessCount < existing.length;) handleGuess(existing[guessCount], true);
 }
 
 function saveGuess(boneName) {
-    // Get today's date as a key
-    let today = new Date().toISOString().split('T')[0]; // "2025-07-16"
-    //today = '2025-07-16'; // For testing purposes, set a specific date
-
     // Get existing guesses for today (or create an empty array)
-    const existing = JSON.parse(localStorage.getItem(today)) || [];
-
+    const existing = JSON.parse(localStorage.getItem(sessionDate)) || [];
     // Add the new guess
     existing.push(boneName);
-
     // Save it back
-    localStorage.setItem(today, JSON.stringify(existing));
+    localStorage.setItem(sessionDate, JSON.stringify(existing));
 }
 
 function handleGuess(userInput, dontAnimate) {
