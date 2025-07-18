@@ -340,14 +340,8 @@ function dailyBone() {
         return;
     }
 
-    let hash = 0;
-    for (let i = 0; i < dateStr.length; i++) {
-        hash = (hash << 5) - hash + dateStr.charCodeAt(i);
-        hash |= 0;
-    }
-
-    const index = Math.abs(hash) % bones.length;
-    targetBone = bones[index];
+    const shuffled = shuffleWithSeed(bones.slice(), dateStr);
+    targetBone = shuffled[0];  // always the same per day, but more evenly random
 }
 
 function displayPrevGuesses() {
