@@ -31,7 +31,7 @@ The general premise of the game is simple, the player has 6 attempts to guess th
 the direction, the length, and the number of bones that guess touches. After each guess,
 colours indicate weather the guess is incorrect,
 (red), correct (green), too high (orange), or too
-low (blue), which will help the player with future guessing. Below you can see what a full game might look like. I truly hope you enjoy it! It was made for my girlfriend, though I know many anatomy lovers will have some fun too!
+low (blue), which will help the player with future guessing. Below you can see what a full game might look like. I truly hope you enjoy it! It was made for a friend of mine, though I know many anatomy lovers will have some fun too!
 </p>
 
 <img src="Cadavle-Example.png">
