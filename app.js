@@ -400,9 +400,6 @@ function showPopup() {
     // Now add fade-in and set opacity to 1 for transition
     popup.classList.add("fade-in");
     popup.style.opacity = 1;
-
-    //focus on the input field
-    input.focus();
 }
 
 function hidePopup() {
@@ -414,6 +411,9 @@ function hidePopup() {
     //pause the video
     const video = popup.querySelector("video");
     video.pause();
+
+    //focus on the input field
+    input.focus();
 }
 
 function handleGuess(userInput, dontAnimate) {
