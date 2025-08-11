@@ -61,7 +61,8 @@ header {
 }
 
 .gamemode-button,
-.reset-endless {
+.reset-endless,
+.info-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -228,6 +229,100 @@ hr {
   color: #efafd9;
 }
 
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1e1828;
+  color: rgb(215, 214, 243);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.info-popup h3 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: calc(6px + 1vw);
+  text-align: center;
+}
+.info-popup p {
+  margin-bottom: 10px;
+  color: #ccc;
+  font-size: calc(5px + 0.7vw);
+}
+
+.info-popup h4 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: calc(5px + 0.8vw);
+}
+
+.info-popup video {
+  margin-top: 10px;
+  border: 2px solid #a4a3a3;
+  width: 75%;
+  justify-self: center;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.example-cell {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  align-items: center;
+}
+
+.example-cell p {
+  margin-top: 5px;
+}
+
+.example-cell div {
+  font-size: calc(2px + 0.8vw);
+  width: 6vw;
+  height: calc(10px + 1.7vw);
+}
+
+.correct-type-example {
+  background-color: #56c079ff;
+}
+
+.incorrect-type-example {
+  background-color: #c14b2eff;
+}
+
+.short-art-example, .direction-example {
+  background-color: #B042FF;
+}
+
+.long-art-example {
+  background-color: #E78F3A;
+}
+
+.info-button-return {
+  margin: 0px;
+  font-family: inherit;
+  font-size: calc(5px + 0.8vw);
+  outline: 1px solid #ffffff;
+  background-color: #747376;
+  text-align: center;
+  border-radius: 5px;
+
+    width: 15vw;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.info-button-return:hover {
+  transform: scale(1.08);
+  background-color: #b042ff;
+}
+
+.centered-content {
+  text-align: center;
+}
+
 @keyframes revealCell {
   0% {
     opacity: 0;
@@ -289,6 +384,10 @@ hr {
   .winframe {
     width: 48vw;
   }
+
+    video {
+    display: none;
+  }
 }
 
 @media (max-width: 500px) {
@@ -324,4 +423,8 @@ hr {
 
 .frame.revealed {
   animation: revealCell 0.35s cubic-bezier(0.4, 0.8, 0.4, 1);
+}
+
+.fade-in {
+  transition: opacity 0.7s;
 }

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="app.css" />
     <script src="app.js" defer></script>
+    <link rel="icon" href="resources/websiteLogo.jpg" type="image/x-icon">
     <title>Cadavle</title>
 </head>
 
@@ -16,15 +17,22 @@
         <div class="headline">
             <div class="header-eles">
                 <div class="left-header-imgs">
-                    <a href="https://www.linkedin.com/in/logan-gillett-941797327/" target="_blank"><img class="header-imgs" src="resources/linkedin.png" alt="LinkedIn" title="Connect With Me On Linkedin!" width="32" height="32" /></a>
+                    <a href="https://www.linkedin.com/in/logan-gillett-941797327/" target="_blank"><img
+                            class="header-imgs" src="resources/linkedin.png" alt="LinkedIn"
+                            title="Connect With Me On Linkedin!" width="32" height="32" /></a>
                     &nbsp;
-                    <a href="https://github.com/LogaGill489/Cadavle" target="_blank"><img class="header-imgs" src="resources/github.png" alt="GitHub" title="See How This Was Made!" width="32" height="32" /></a>
+                    <a href="https://github.com/LogaGill489/Cadavle" target="_blank"><img class="header-imgs"
+                            src="resources/github.png" alt="GitHub" title="See How This Was Made!" width="32"
+                            height="32" /></a>
                 </div>
                 <h1 class="header-title">Cadavle</h1>
                 <div class="right-header-imgs">
-                    <button class="gamemode-button"><img class="header-imgs" src="resources/swap.png" alt="Swap Gamemodes" title="Swap Gamemodes!" width="32" height="32" /></button>
+                    <button class="gamemode-button"><img class="header-imgs" src="resources/swap.png"
+                            alt="Swap Gamemodes" title="Swap Gamemodes!" width="32" height="32" /></button>
                     &nbsp;
-                    <a href="https://github.com/LogaGill489/Cadavle" target="_blank"><img class="header-imgs" src="resources/info.png" alt="Game Info" title="Game Info (Coming Soon)" width="32" height="32" /></a>
+                    <button class="info-button"><img class="header-imgs" src="resources/info.png" alt="How To Play"
+                            title="How To Play!" width="32" height="32" />
+                    </button>
                 </div>
             </div>
             <hr>
@@ -110,8 +118,8 @@
             <div class="row">
                 <div class="frame endless-repeat">
                     <button class="reset-endless">
-                    <img src="resources/reset.png" alt="reset" title="Reset Endless Mode!"
-                        style="width:40px; height:auto; display:block; margin:auto;">
+                        <img src="resources/reset.png" alt="reset" title="Reset Endless Mode!"
+                            style="width:40px; height:auto; display:block; margin:auto;">
                     </button>
                 </div>
                 <div class="frame winframe">Bone: Ulna</div>
@@ -124,10 +132,48 @@
         <div class="error-text">
             <p class="error-output"></p>
         </div>
+        <div class="info-popup">
+            <h3>How To Play</h3>
+            <p> The general premise of the game is simple, the player has 6 attempts to guess the correct bone
+                and is given hints from their guess based on if it is the same type.
+            </p>
+            <h4>Types of Boxes</h4>
+            <div class="example-container">
+                <div class="example-cell">
+                    <div class="frame incorrect-type-example">Long</div>
+                    <p>Not the same as the target bone.</p>
+                </div>
+                <div class="example-cell">
+                    <div class="frame correct-type-example">Flat</div>
+                    <p>The same as the target bone.</p>
+                </div>
+                <div class="example-cell">
+                    <div class="frame direction-example">Superior</div>
+                    <p>Target bone is superior to the bone guessed.</p>
+                </div>
+                <div class="example-cell">
+                    <div class="frame long-art-example">8 ⬇️</div>
+                    <p>Longer / has more articulates than the target bone.</p>
+                </div>
+                <div class="example-cell">
+                    <div class="frame short-art-example">1 ⬆️</div>
+                    <p>Shorter / has less articulates than the target bone.</p>
+                </div>
+                <div class="example-cell">
+                    <div class="frame correct-type-example">4</div>
+                    <p>Target bone is the same length / has the same number of articulates.</p>
+                </div>
+            </div>
+            <div class="centered-content">
+                <video src="resources/demo.mp4">Your Browser Does Not Support Videos.</video>
+                <button class="info-button-return">Ok!</button>
+            </div>
+        </div>
     </main>
     <footer>
         <div class="footer-eles">
-            <p class="footer-line">Inspired By <a class="lower-hyper-link" href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>.
+            <p class="footer-line">Inspired By <a class="lower-hyper-link"
+                    href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>.
                 <br> Created By <a class="lower-hyper-link" href="https://github.com/LogaGill489">Logan Gillett</a>.
             </p>
         </div>

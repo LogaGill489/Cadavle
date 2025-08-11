@@ -128,6 +128,12 @@ button.addEventListener("click", runInputHandler);
 const reset_game_button = document.querySelector("button.reset-endless");
 reset_game_button.addEventListener("click", resetGame);
 
+// Info popup
+const info_button = document.querySelector("button.info-button");
+const info_button_return = document.querySelector("button.info-button-return");
+info_button.addEventListener("click", showPopup);
+info_button_return.addEventListener("click", hidePopup);
+
 //rows and cell setup
 const row = document.getElementsByClassName("row"); // Replace with dynamic logic
 let cells;
@@ -140,7 +146,9 @@ let targetBone = bones[Math.floor(Math.random() * bones.length)];
 let guessCount = 0;
 
 //Stores the current date for daily challenges
-let sessionDate = new Date().toISOString().split('T')[0];
+let d = new Date();
+const sessionDate = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+//let sessionDate = new Date().toISOString().split('T')[0];
 //sessionDate = '2025-07-16'; // For testing purposes, set a specific date
 
 // Populate the bone selector dropdown
@@ -358,7 +366,9 @@ function dailyBone() {
 }
 
 function displayPrevGuesses() {
-    const today = new Date().toISOString().split('T')[0];
+    let d = new Date();
+    const today = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    //const today = new Date().toISOString().split('T')[0];
     const existing = JSON.parse(localStorage.getItem(today)) || [];
     for (guessCount; guessCount < existing.length;) handleGuess(existing[guessCount], true);
 }
@@ -370,6 +380,40 @@ function saveGuess(boneName) {
     existing.push(boneName);
     // Save it back
     localStorage.setItem(sessionDate, JSON.stringify(existing));
+}
+
+//functions used to show and hide the info popup
+function showPopup() {
+    //show the popup
+    const popup = document.querySelector(".info-popup");
+    popup.style.display = "block";
+
+    //start the video from the start
+    const video = popup.querySelector("video");
+    video.currentTime = 1; // Reset to start
+    video.play();
+
+    // Add fade-in animation
+    popup.style.opacity = 0;
+    void popup.offsetWidth; // Trigger reflow to restart the animation
+
+    // Now add fade-in and set opacity to 1 for transition
+    popup.classList.add("fade-in");
+    popup.style.opacity = 1;
+
+    //focus on the input field
+    input.focus();
+}
+
+function hidePopup() {
+    //hide the popup
+    const popup = document.querySelector(".info-popup");
+    popup.style.display = "none";
+    popup.classList.remove("fade-in");
+
+    //pause the video
+    const video = popup.querySelector("video");
+    video.pause();
 }
 
 function handleGuess(userInput, dontAnimate) {
